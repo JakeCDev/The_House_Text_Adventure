@@ -1,5 +1,5 @@
 
-Game Title: The House
+The House
 #======================================================================
 
 Game Description:
