@@ -36,16 +36,27 @@ Game File and loop explanation
 - room_loader.py handles actual room movement
 
     -room calls the visit_room in mechanics
+
     -Checks if room_name has an alias and converts it if necessary.
+
     -Stores the previous room in game_states.last_room.
+
     -Updates game_states.current_room to the new room name.
+
     -Ensures game_states.room_visits[room_name] is tracked and capped at 5.
+
     -Calls load_room(room_name) to load the correct room function.
+
     -Uses importlib.import_module() to load  rooms/room_X.py file.
+
     -Searches inside that file for a function named after the room ex:"room_2_road" inside room_2_road.py
+
     -If found it returns that function so visit_room() can execute it.
+
     -Displays room description based on visit_count to change room states.
+
     -Presents choices (look around, move to another room, check inventory, etc.)
+
     -If the player moves again, it calls visit_room(new_room_name), repeating the process.
 
 - ascii_art.py - Stores ASCII visuals for immersive text effects.
