@@ -69,6 +69,12 @@ Credits:
 - Game Developed By: Jake Chrissinger
 - Tools Used: Python, PyCharm
 
+#ASCII Art in this game was sourced from the following websites:
+#- [ASCII Art Archive](https://www.asciiart.eu/)
+#- [FSymbols ASCII Art](https://fsymbols.com/text-art/)
+#- [ASCII Art UK](https://ascii.co.uk/)
+#All rights belong to their respective creators.
+
 #======================================================================
 
 Future Plans:
