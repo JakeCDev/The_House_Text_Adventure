@@ -126,6 +126,9 @@ def look_around_dining_room():
         elif choice == "4":
             return  #Exit back to the dining room menu
 
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
+
         else:
             print("\nInvalid choice. Try again.")
 

@@ -174,6 +174,9 @@ def look_around_porch():
         elif choice == "5":
             return  #Exit back to the porch menu
 
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
+
         else:
             print("\nInvalid choice. Try again.")
 

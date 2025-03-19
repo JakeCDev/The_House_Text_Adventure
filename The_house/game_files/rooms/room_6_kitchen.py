@@ -62,12 +62,11 @@ def room_6_kitchen():
         print("2. Go south to the Office")
         print("3. Go east to the Dining Room")
         print("4. Go downstairs to the Basement")
+        print("5. Check Inventory")
+        print("6. Wait in the kitchen")
 
         if "Lockbox Opened" in game_states.inventory:
-            print("5. Step through the mysterious door")
-
-        print("6. Check Inventory")
-        print("7. Wait in the kitchen")
+            print("7. Step through the mysterious door")
 
         choice = input("> ").strip()
 
@@ -82,7 +81,7 @@ def room_6_kitchen():
             game_states.room_visits[room_name] += 1
             visit_room("room_9_dining_room")
 
-        elif choice == "4":  #Block basement until power is restored
+        elif choice == "4":  # Block basement until power is restored
             if game_states.power_restored:
                 type_text("\nThe basement is now dimly lit. You cautiously step down the stairs.")
                 game_states.room_visits[room_name] += 1
@@ -92,21 +91,21 @@ def room_6_kitchen():
                 type_text("You can't see anything down there. Once power is restored, you can come back.")
                 input("\nPress enter to return to the kitchen.")
 
-        elif choice == "5" and "Lockbox Opened" in game_states.inventory:
-            game_states.inventory.append("Entered Final Room")  #Marks the point of no return
-            game_states.room_visits[room_name] += 1
-            visit_room("room_14_final_room")  #Move to the final sequence
-            break
-
-        elif choice == "6":
+        elif choice == "5":
             check_inventory(room_6_kitchen)
 
-        elif choice == "7":
+        elif choice == "6":
             universal_wait()
             input("\nPress Enter to continue.")
 
+        elif choice == "7" and "Lockbox Opened" in game_states.inventory:
+            game_states.inventory.append("Entered Final Room")  # Marks the point of no return
+            game_states.room_visits[room_name] += 1
+            visit_room("room_14_final_room")  # Move to the final sequence
+            break
+
         elif choice == "debug":
-            debug_menu()  #Calls the debug menu
+            debug_menu()  # Calls the debug menu
 
         else:
             print("\nInvalid choice. Try again.")
@@ -152,6 +151,9 @@ def look_around_kitchen():
 
         elif choice == "4":
             return  #Exit back to the kitchen menu
+
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
 
         else:
             print("\nInvalid choice. Try again.")

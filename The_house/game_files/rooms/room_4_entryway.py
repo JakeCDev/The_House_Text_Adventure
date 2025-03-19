@@ -33,7 +33,7 @@ def room_4_entryway():
 
     elif visit_count == 1:  #Past
         type_text("\nThe wallpaper is clean, the air carries the faint scent of coffee.")
-        type_text("Shoes are neatly placed by the door, as if someone was just here...")
+        type_text("Shoes are neatly placed by the front, keys on the table, as if someone was just here...")
 
     elif visit_count == 2:  #Future
         type_text("\nThe walls have been repainted... A new table and coat rack stands where the old one was...")
@@ -44,8 +44,8 @@ def room_4_entryway():
         type_text("The temperature drops almost instantly...")
 
     else:  #Altered Reality
-        type_text("\nYou are inside. But the house is... wrong...")
-        type_text("The room is filled with stairs and doors leading nowhere...")
+        type_text("\nYou step inside, But the house is... wrong... twisted and altered...")
+        type_text("The room is now filled with stairs and doors leading nowhere...")
 
 #======================================================================
 
@@ -59,12 +59,13 @@ def room_4_entryway():
         print("1. Look around")
         print("2. Wait in the entryway")
         if not game_states.door_disappeared:
-            print("3. Check the front door")
+            print("3. Check the front door")  #When the door is still there
+        else:
+            print("3. Check where the door once stood")  #After the door vanishes
         print("4. Go west to the Office")
         print("5. Go east to the Living Room")
         print("6. Check Inventory")
-        if not game_states.power_restored:  #If fuse puzzle not done
-            print("7. Check the fuse box")
+        print("7. Check the fuse box")
 
         choice = input("> ").strip()
 
@@ -75,7 +76,8 @@ def room_4_entryway():
             universal_wait()
             input("\nPress Enter to continue.")
 
-        elif choice == "3" and not game_states.door_disappeared:
+
+        elif choice == "3":  #check_front_door() handles what happens
             check_front_door()
 
         elif choice == "4":
@@ -91,7 +93,7 @@ def room_4_entryway():
         elif choice == "6":
             check_inventory(room_4_entryway)
 
-        elif choice == "7" and not game_states.power_restored:
+        elif choice == "7":
             check_fuse_box()
 
         elif choice == "debug":
@@ -134,6 +136,9 @@ def look_around_entryway():
 
         elif choice == "4":
             return  #Exit back to entryway menu
+
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
 
         else:
             print("\nInvalid choice. Try again.")

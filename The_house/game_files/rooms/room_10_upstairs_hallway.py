@@ -131,6 +131,9 @@ def look_around_upstairs_hallway():
         elif choice == "4":
             return  #Exit back to the hallway menu
 
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
+
         else:
             print("\nInvalid choice. Try again.")
 

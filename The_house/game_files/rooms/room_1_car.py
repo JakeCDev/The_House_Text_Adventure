@@ -107,6 +107,9 @@ def look_around_car():
         elif choice == "3":
             return  #Exit back to the car menu
 
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
+
         else:
             print("\nInvalid choice. Try again.")
 

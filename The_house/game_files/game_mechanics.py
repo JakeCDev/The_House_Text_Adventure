@@ -158,7 +158,7 @@ def use_screwdriver():
 #Front door mechanics
 #======================================================================
 
-#When player checks door from outside
+#When player checks door from inside - door choice disappears
 def check_front_door():
     #If the door has disappeared, warn the player
     if game_states.door_disappeared:
@@ -168,9 +168,9 @@ def check_front_door():
             type_text("Nothing remains but a blank wall where the door once stood.")
             game_states.front_door_warning_shown = True  #Ensures message only shows once
         else:
-            type_text("\nThe front door is gone. Just an empty wall remains.")
+            type_text("\nThe front door is gone. Just an empty wall remains. The wall is hot to the touch, almost enough to burn you...")
     else:
-        type_text("\nYou check the front door. It’s locked. There's no way out.")
+        type_text("\nYou check the front door. It’s locked tight. There's no way out.")
 
 #======================================================================
 
@@ -184,7 +184,7 @@ def check_entryway_for_door():
     if game_states.room_visits["room_4_entryway"] == 0:
         return  # Do nothing, door stays for now
 
-    #If the player is re-entering after leaving, remove the door
+    #If the player is re entering after leaving, remove the door
     if game_states.room_visits["room_4_entryway"] > 0 and not game_states.door_disappeared:
         type_text("\nYou glance toward the front door...")
         type_text("\nIt's gone...")
@@ -202,7 +202,7 @@ def check_entryway_for_door():
 def check_fuse_box():
     #If power is already restored, display a short message and return
     if game_states.power_restored:
-        type_text("\nThe fuse box hums softly. The lights are already on. No need to touch it again.")
+        type_text("\nThe fuse box hums softly. The lights are already on. No need to risk getting shocked again now.")
         input("\nPress Enter to return.")
         return
 
@@ -216,6 +216,7 @@ def check_fuse_box():
         print("2. Remove a fuse")
         print("3. Try to activate the fuse box")
         print("4. Nevermind")
+
         choice = input("> ").strip()
 
         if choice == "1":
@@ -227,6 +228,8 @@ def check_fuse_box():
                 return  #Exit immediately if power is restored
         elif choice == "4":
             return
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
         else:
             print("\nInvalid choice. Try again.")
 
@@ -425,10 +428,11 @@ def inspect_safe():
 
 #drivers licence mechanic
 def get_player_name():
-    type_text("\nYour head still feels... off...")
+    type_text("\nYour thoughts feel scrambled... head in a daze...")
+    time.sleep(1)
     type_text("\nYou reach into your pocket, fingers brushing against a familiar item.")
     type_text("\nYour ID. A small comfort. A reminder of who you are.")
-    type_text("\nYour eyes settling on the worn plastic of your driver's license, you feel a comfort.")
+    time.sleep(1)
 
     #loop for name input
     while True:
@@ -444,8 +448,24 @@ def get_player_name():
 
     game_states.item_descriptions[f"Driver's License ({name})"] = f"A worn-out driver's license with the name '{name}' on it. Feels... familiar."
 
-    type_text(f"\nThe name feels familiar... {name}. Yes. That’s right.")
+    type_text(f"\nThe name feels familiar... {name}. Yea... That feels right...")
     type_text("\nYou tuck the ID back into your pocket, gripping it tightly for reassurance.")
+
+    #ID with proper alignment
+    max_name_length = 25  #Adjust if needed to fit within formatting
+    display_name = name[:max_name_length]  #Truncate if too long
+    if len(name) > max_name_length:
+        display_name = display_name[:-3] + "..."  #Indicate truncation with "..."
+
+    #Display formatted ID - non ascii so we can call name
+    print(f"""
+        ┌──────────────────────────────────┐
+        │  DRIVER'S LICENSE                │
+        │  Name: {display_name:<25} │
+        │  Expires: 12/31/20XX             │
+        │  State: [REDACTED]               │
+        └──────────────────────────────────┘
+        """)
 
 #======================================================================
 
@@ -468,13 +488,19 @@ def distort_name(player_name, stage):
         #Join the shuffled parts back together and return
         return ' '.join(distorted_parts)
 
+
     elif stage == 3:
-        #Stage 3 - Completely distorted: Random string of characters the same length as the player's name
-        length = len(player_name)
-        return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+        #Stage 3 - Completely distorted: Random characters, but keep spaces in place
+        distorted_name = []
+        for char in player_name:
+            if char == " ":
+                distorted_name.append(" ")  #Keep spaces intact
+            else:
+                distorted_name.append(random.choice(string.ascii_lowercase))  #Replace only letters
+        return ''.join(distorted_name)
 
     else:
-        return player_name  #Default to original name if stage is not valid
+        return player_name  # Default to original name if stage is not valid
 
 #======================================================================
 #Reset mechanic

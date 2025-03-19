@@ -116,6 +116,9 @@ def look_around_bedroom_b():
         elif choice == "4":
             return  #Exit back to the bedroom menu
 
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
+
         else:
             print("\nInvalid choice. Try again.")
 

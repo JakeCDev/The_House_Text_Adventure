@@ -120,6 +120,9 @@ def look_around_living_room():
         elif choice == "4":
             return  #Exit back to the living room menu
 
+        elif choice == "debug":
+            debug_menu()  #Calls the debug menu
+
         else:
             print("\nInvalid choice. Try again.")
 

@@ -50,7 +50,7 @@ item_descriptions = {
     "Green Fuse": "A green-colored fuse. Looks intact. You might need this somewhere.",
     "Blue Fuse": "A blue-colored fuse. Looks intact. You might need this somewhere.",
     "Safe Order Hint": "Down below, where there is no sight. At the table, in flickering light. Where the clock forgets what’s wrong from right.",
-    "Fuse Order Hint": "Scrawled in the margins, barely readable, R  G  B",
+    "Fuse Order Hint": "Scrawled in the margins, barely readable, R.G.B",
     "Attic Hint": "It's all hidden in the attic.",
     "Basement Safe Password Hint": "You found a number '6' etched into the concrete walls of the basement.",
     "Dining Room Safe Password Hint": "You found a number '7' scratched into the wood of the dining table.",

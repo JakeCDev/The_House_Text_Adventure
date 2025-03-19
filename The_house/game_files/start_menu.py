@@ -68,7 +68,7 @@ def start_menu():
         choice = input("\nEnter choice: ").strip().lower()  #Strips unwanted spaces and .lower to convert to lowercase
 
         if choice == "1":
-            slow_dotted_text("\nYou begin to regain clarity")
+            slow_dotted_text("\nYou start to come to")
             print()#blank line
             time.sleep(2)
             return "start_game"  #Return control to main.py - sends back with start game as choice
