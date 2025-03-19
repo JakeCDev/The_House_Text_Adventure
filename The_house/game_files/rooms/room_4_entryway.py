@@ -28,7 +28,7 @@ def room_4_entryway():
 
     #Room state changes
     if visit_count == 0:  #Present
-        type_text("\nYou step into the room. The house creaks all around you.")
+        type_text("\nAs you step into the room. The house creaks all around you.")
         type_text("The entryway is dimly lit. Dust flows through the air.")
 
     elif visit_count == 1:  #Past
@@ -58,7 +58,8 @@ def room_4_entryway():
         print("\nWhat do you want to do?")
         print("1. Look around")
         print("2. Wait in the entryway")
-        print("3. Check the front door")
+        if not game_states.door_disappeared:
+            print("3. Check the front door")
         print("4. Go west to the Office")
         print("5. Go east to the Living Room")
         print("6. Check Inventory")
@@ -74,7 +75,7 @@ def room_4_entryway():
             universal_wait()
             input("\nPress Enter to continue.")
 
-        elif choice == "3":
+        elif choice == "3" and not game_states.door_disappeared:
             check_front_door()
 
         elif choice == "4":
@@ -117,11 +118,11 @@ def look_around_entryway():
             print(ascii_art["mirror"])
 
         elif choice == "2":  #Red fuse
-            if "red fuse" not in game_states.inventory and "red fuse" not in game_states.fuse_box:
+            if "Red Fuse" not in game_states.inventory and "Red Fuse" not in game_states.fuse_box:
                 type_text("\nAn old coat rack stands by the door. A single coat hangs there.")
                 type_text("Its pocket has a single Red Fuse.")
                 print(ascii_art["red_fuse"])
-                game_states.inventory.append("red fuse")
+                game_states.inventory.append("Red Fuse")
                 type_text("This may be useful... you decide to take it for now.")
             else:
                 type_text("The coat's pockets are empty now.")

@@ -17,45 +17,42 @@ from ascii_art import ascii_art  # Import ASCII art dictionary
 def game_intro():
     #Repeating "Drip..." effect
     for _ in range(3):
-        slow_drip("Drip...", letter_delay=0.2, dot_delay=0.7, pause_after=0.2)
-        time.sleep(0.2)
+        slow_drip("Drip...", letter_delay=0.3, dot_delay=0.7, pause_after=0.2)
+        time.sleep(0.5)
 
     #Slow text effect for dramatic intro
     type_text("""
-Your world is in a haze. Darkness all around. A ringing fills your ears.  
-For a moment, you can't recall who you are... or even where you are...  
+    The world is a haze. Darkness surrounds you. A ringing fills your ears.  
+    For a moment, you can’t recall who you are… or even where you are…  
 
-The pain... A dull ache in your head. Stiffness in your neck. Something… something must have happened.  
-Slowly, the fog in your mind begins to lift.  
+    Pain. A dull ache throbs in your head. Stiffness in your neck. Something… something must have happened.  
+    Slowly, the fog in your mind begins to lift.  
 
-Rain. You can hear it now, hammering against the windshield in an unrelenting fashion.  
-The wind howls through unseen cracks, a chilling whisper you just can't quite make out echoes from the dark.  
+    Rain. You hear it clearly now, hammering against the windshield.  
+    The wind howls through cracks, a chilling whisper you can’t quite make out, echoing from the dark.  
 
-The car... You try, but it won’t seem to restart...  
+    The car… You try to start it, but it won’t turn over…  
 
-Your fingers tighten around the steering wheel as clarity settles in.  
-Somehow, you must have lost control... Maybe the roads were too slick...  
-For now, your car is half-buried in a ditch. The engine is dead.  
-Headlights barely cut through the storm as the radio blares static...  
+    Your fingers tighten around the steering wheel as the haze fades.  
+    You must have lost control. Maybe the roads were too slick…  
 
-You reach for your phone. The screen flickers on, but there’s no signal...  
-Nothing but static and emptiness for miles around, it would appear...  
+    For now, your car is half-buried in a ditch, the engine dead.  
+    Headlights barely cut through the storm as the radio blares static on every station…  
 
-Through the downpour, just barely brighter than a shadow... you see it.  
-A house in the distance... with a single, flickering light from within.  
+    You reach for your phone. The screen flickers to life, but there’s no signal…  
+    Nothing visible but the storm and darkness for miles around…  
 
-Maybe they could offer some help to get out of this storm...  
+    But wait… Through the downpour, just barely brighter than a shadow… you see it.  
+    A house in the distance… with a single, flickering light from within.  
 
-You could stay put. Wait for the rain to pass.  
-But it doesn't look like it will let up anytime soon.  
+    You could stay put and wait for the storm to pass.  
+    But it doesn’t look like it will let up anytime soon…  
 
-There is just something about that house...  
-It feels important... like it is calling you.  
+    Something about that house draws you in, its faint light calling to you through the rain.  
+    Maybe there’s someone inside who can help… or a phone to call for help.  
 
-Maybe there is someone who can help... or even a phone, perhaps.  
-Or maybe… through fate, you were just meant to find this house.  
-""")
-
+    Or perhaps, through some twist of fate, this house is a place you were always meant to find.  
+    """)
 #======================================================================
 #Show storm ASCII art - Appears before user input for 'enter' in main.py
     print(ascii_art["storm"])

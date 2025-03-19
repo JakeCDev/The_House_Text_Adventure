@@ -13,6 +13,8 @@ from ascii_art import ascii_art
 
 #External imports
 import random
+import time
+import string
 
 #======================================================================
 #Room movement system
@@ -326,7 +328,7 @@ def remove_fuse():
 
 def activate_fuse_box():
     #Check if the fuse box has the correct order
-    if game_states.fuse_box == ["red fuse", "green fuse", "blue fuse"]:
+    if game_states.fuse_box == ["Red Fuse", "Green Fuse", "Blue Fuse"]:
         type_text("\nYou hear a satisfying *CLICK* as the fuse box activates. The lights flicker back to life!")
 
         #Update game state
@@ -336,9 +338,27 @@ def activate_fuse_box():
         visit_room("room_4_entryway")  #Send player back to the Entryway
         return True  #Exit immediately
 
+
     else:
-        type_text("\nThe fuse box hums loudly, then *buzz*... silence.")
-        type_text("\nSomething isn't right. You should try again.")
+
+        #First failure
+        if game_states.incorrect_fuse_attempts == 0:
+            type_text("\nThe fuse box hums weakly, then *buzz*... silence.")
+            type_text("Maybe something is incorrect or missing?")
+
+        #Second failure
+        elif game_states.incorrect_fuse_attempts == 1:
+            type_text("\nA faint spark flickers inside the panel before going dead again.")
+            type_text("You flinch. That didn’t seem right...")
+            type_text("Something feels wrong, the air feels heavier with a dark presence.")
+
+        #Third failure
+        elif game_states.incorrect_fuse_attempts == 2:  #Resets immediately on 3rd failure
+            type_text("\nA loud *POP* echoes from the panel. The lights flicker and spark for a moment.")
+            type_text("A high pitch tone blares from behind you...")
+            type_text("A dark presence fills the room... Your vision fades to black...")
+            reset_game()
+            return False  #Prevents continuing in the fuse box menu
 
         #Reset fuses on failure
         for i in range(3):
@@ -347,11 +367,6 @@ def activate_fuse_box():
                 game_states.fuse_box[i] = "Empty"
 
         game_states.incorrect_fuse_attempts += 1
-
-        #If the player fails 3 times, reset the game
-        if game_states.incorrect_fuse_attempts == 3:
-            type_text("\nA dark presence fills the room... Your vision fades to black...")
-            reset_game()
 
         return False  #Stay in the fuse box menu if incorrect
 
@@ -371,7 +386,8 @@ def inspect_safe():
         #Check if input is valid 3 digits
         if not safe_code.isdigit() or len(safe_code) != 3:
             type_text("\nInvalid input! The passcode must be a 3-digit number.")
-            game_states.incorrect_safe_attempts += 1
+            input("\nPress Enter to try again.")  #Invalid inputs do not increase incorrect_safe_attempts
+            continue
 
         elif safe_code == "673":  #Correct code unlocks the safe
             if "Skeleton Key" not in game_states.inventory:
@@ -400,7 +416,6 @@ def inspect_safe():
         if game_states.incorrect_safe_attempts >= 3:
             type_text("\nA suffocating darkness fills the room. The air grows ice cold around you.")
             type_text("A hand not your own grips your shoulder... Your vision fades...")
-            type_text("\nYou awaken back in the car. The rain still falls. Harder than before. But you must still press on.")
             reset_game()
             break
 
@@ -408,24 +423,97 @@ def inspect_safe():
 
 #======================================================================
 
+#drivers licence mechanic
+def get_player_name():
+    type_text("\nYour head still feels... off...")
+    type_text("\nYou reach into your pocket, fingers brushing against a familiar item.")
+    type_text("\nYour ID. A small comfort. A reminder of who you are.")
+    type_text("\nYour eyes settling on the worn plastic of your driver's license, you feel a comfort.")
+
+    #loop for name input
+    while True:
+        name = input("\nThe name on the ID reads: ").strip()  #keep as is
+        if name:
+            break
+        else:
+            type_text("\nA name... You must remember your name.")  # Prompt them again
+
+    #save name
+    game_states.player_name = name
+    game_states.inventory.append(f"Driver's License ({name})")  #Add ID to inventory
+
+    game_states.item_descriptions[f"Driver's License ({name})"] = f"A worn-out driver's license with the name '{name}' on it. Feels... familiar."
+
+    type_text(f"\nThe name feels familiar... {name}. Yes. That’s right.")
+    type_text("\nYou tuck the ID back into your pocket, gripping it tightly for reassurance.")
+
+#======================================================================
+
+#distort the player's name
+def distort_name(player_name, stage):
+    if stage == 1:
+        #Stage 1 - Familiar: Return the player's name as it is.
+        return player_name
+
+    elif stage == 2:
+        #Stage 2 - Slight Distortion: Shuffle first and last name separately
+        parts = player_name.split()
+        distorted_parts = []
+
+        for part in parts:
+            #Shuffle the letters in each part (first name or last name)
+            shuffled = ''.join(random.sample(part, len(part)))
+            distorted_parts.append(shuffled)
+
+        #Join the shuffled parts back together and return
+        return ' '.join(distorted_parts)
+
+    elif stage == 3:
+        #Stage 3 - Completely distorted: Random string of characters the same length as the player's name
+        length = len(player_name)
+        return ''.join(random.choice(string.ascii_lowercase) for _ in range(length))
+
+    else:
+        return player_name  #Default to original name if stage is not valid
+
 #======================================================================
 #Reset mechanic
 #======================================================================
 
+#for failed mechanic reset
 def reset_game():
     global door_disappeared, front_door_warning_shown, door_open, door_checked, inventory, fuse_order_hint_found, safe_order_hint_found
 
-    #Reset the front door state
+    #Preserve the Driver's License
+    driver_license = [item for item in game_states.inventory if "Driver's License" in item]
+
+    #Clear inventory but keep the ID
+    game_states.inventory.clear()
+    game_states.inventory.extend(driver_license)
+
+    #Reset failure counters to prevent instant failure on next try
+    game_states.incorrect_fuse_attempts = 0
+    game_states.incorrect_safe_attempts = 0
+
+    #Reset door state
     door_disappeared = False
     front_door_warning_shown = False
-    inventory.clear()
     fuse_order_hint_found = False
     safe_order_hint_found = False
+
+    type_text("\nA strange sense of déjà vu washes over you...")
+    time.sleep(2)
+
+    #manually increment count since not using normal room move
+    game_states.room_visits["room_1_car"] += 1
+
+    #send back to car
+    visit_room("room_1_car")
 #======================================================================
 
 #total reset
 def full_reset_game():
-    #Resets ALL game states, including inventory, visited rooms, and progress
+    #Completely resets ALL game states
 
     #Reset core game tracking variables
     game_states.current_room = "room_1_car"
@@ -434,10 +522,10 @@ def full_reset_game():
     #Fully reset room visit counts
     game_states.room_visits = {room: 0 for room in game_states.room_visits}
 
-    #Clear the player's inventory
+    #Clear the player's inventory completely
     game_states.inventory.clear()
 
-    #Reset all major puzzle and progress flags
+    #Reset all major puzzle and progress
     game_states.safe_unlocked = False
     game_states.power_restored = False
     game_states.fuse_box = ["Empty", "Empty", "Empty"]
@@ -448,11 +536,12 @@ def full_reset_game():
     game_states.incorrect_safe_attempts = 0
     game_states.front_door_warning_shown = False
 
-    #Reset item discovery tracking (optional)
+    #Reset item discovery tracking
     game_states.fuse_order_hint_found = False
     game_states.safe_order_hint_found = False
 
-    print("\n[DEBUG] Full game reset complete. Ready for a fresh start.")
+    type_text("\nEverything fades... and when you open your eyes, it is as if nothing ever happened.")
+
 
 #======================================================================
 #Final/ending door mechanic

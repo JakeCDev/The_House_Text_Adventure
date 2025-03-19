@@ -30,7 +30,7 @@ def type_text(text, delay=0.04):
 #======================================================================
 
 #slow drip
-def slow_drip(text, letter_delay=0.2, dot_delay=0.7, pause_after=0.2):
+def slow_drip(text, letter_delay=.2, dot_delay=0.7, pause_after=0.2):
     #Separate the word from the dots (assumes text ends with "...")
     if text.endswith("..."):
         word = text[:-3]
@@ -57,7 +57,7 @@ def slow_drip(text, letter_delay=0.2, dot_delay=0.7, pause_after=0.2):
 #======================================================================
 
 #slow type with dots - slow_dotted_text
-def slow_dotted_text(text, dot_delay=0.7, char_delay=0.1): #adjust to change times, char delay for text
+def slow_dotted_text(text, dot_delay=0.4, char_delay=0.25): #adjust to change times, char delay for text
 
     #Type out the main text normally
     for char in text:

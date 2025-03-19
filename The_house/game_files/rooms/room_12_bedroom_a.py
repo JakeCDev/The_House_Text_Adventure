@@ -101,10 +101,10 @@ def look_around_bedroom_a():
             type_text("\nAn old journal sits on the shelf. The pages are torn and scattered.")
             type_text("One page remains readable: 'It's all hidden in the attic.'")
 
-            if "Attic hint" not in game_states.inventory:  #Prevents duplicate entries
+            if "Attic Hint" not in game_states.inventory:  #Prevents duplicate entries
                 type_text("This feels important... you should take note of this.")
                 print(ascii_art["bookshelf"])
-                game_states.inventory.append("Attic hint")
+                game_states.inventory.append("Attic Hint")
             else:
                 type_text("You've already taken notes of this.")
 

@@ -28,7 +28,7 @@ def room_1_car():
 
     elif visit_count == 1:  #Past
         type_text("\nThe radio hums softly, playing a song you almost recognize, but the engine is still dead.")
-        type_text("The headlights glow faintly... but you don’t remember turning them on.")
+        type_text("The interior lights are all dimly lit... but you don’t remember turning them on.")
         type_text("A bouquet of fresh flowers rests on the passenger seat...")
 
     elif visit_count == 2:  #Future

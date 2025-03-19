@@ -104,7 +104,7 @@ def look_around_office():
 
         if choice == "1":
             type_text("\nThe desk is neat, almost too neat...")
-            type_text("The papers on top look shuffled but normal, you find your name on several pages...")
+            type_text(f"The papers on top look shuffled but normal enough. Then it strikes you... {game_states.player_name}... as clear as day, scribbled on almost every sheet.")
             print(ascii_art["desk"])
 
         elif choice == "2":
@@ -118,7 +118,7 @@ def look_around_office():
                 type_text("One page, however, catches your eye: a maintenance log for the electrical system.")
                 type_text("Scrawled in the margins, barely still readable: '**R → G → B**'.")
                 type_text("This might be important later...")
-                print(ascii_art["fuse_order_hint"])
+                print(ascii_art["Fuse_Order_Hint"])
                 game_states.inventory.append("Fuse Order Hint")
             else:
                 type_text("\nYou've already noted down the important details from this drawer...")

@@ -35,18 +35,23 @@ inventory = []
 
 #======================================================================
 
+#Store the player chosen name (set during get_player_name())
+player_name = "Unknown"  #Default before they enter a name
+
+#======================================================================
+
 #Item descriptions
 item_descriptions = {
     "Screwdriver": "A rusty screwdriver. Could be useful for prying something open...",
     "Locked Box": "A small, rusted lockbox. The lid is sealed shut. You’ll need something to pry it open.",
     "Lockbox Opened": "The rusted box you found, now opened. Inside were old photos, burnt papers, and a obituary.",
     "Skeleton Key": "A heavy brass key. Looks important. Might unlock something upstairs...",
-    "red fuse": "A red-colored fuse. Looks intact. You might need this somewhere.",
-    "green fuse": "A green-colored fuse. Looks intact. You might need this somewhere.",
-    "blue fuse": "A blue-colored fuse. Looks intact. You might need this somewhere.",
+    "Red Fuse": "A red-colored fuse. Looks intact. You might need this somewhere.",
+    "Green Fuse": "A green-colored fuse. Looks intact. You might need this somewhere.",
+    "Blue Fuse": "A blue-colored fuse. Looks intact. You might need this somewhere.",
     "Safe Order Hint": "Down below, where there is no sight. At the table, in flickering light. Where the clock forgets what’s wrong from right.",
     "Fuse Order Hint": "Scrawled in the margins, barely readable, R  G  B",
-    "Attic hint": "It's all hidden in the attic.",
+    "Attic Hint": "It's all hidden in the attic.",
     "Basement Safe Password Hint": "You found a number '6' etched into the concrete walls of the basement.",
     "Dining Room Safe Password Hint": "You found a number '7' scratched into the wood of the dining table.",
     "Living Room Safe Password Hint": "The clock in the living room flickered strangely, displaying the time '3:00'. This might be important.",
@@ -65,7 +70,8 @@ item_descriptions = {
                                         |                   
                                     [ Road ]            
                                         |                   
-                                     [ Car ]    """
+                                     [ Car ]    """,
+    "Driver's License": "A worn-out driver's license. The name is hard to read..."
 }
 
 #======================================================================

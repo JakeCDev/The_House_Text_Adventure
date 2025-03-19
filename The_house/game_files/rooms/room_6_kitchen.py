@@ -85,6 +85,7 @@ def room_6_kitchen():
         elif choice == "4":  #Block basement until power is restored
             if game_states.power_restored:
                 type_text("\nThe basement is now dimly lit. You cautiously step down the stairs.")
+                game_states.room_visits[room_name] += 1
                 visit_room("room_7_basement")
             else:
                 type_text("\nYou try to step into the basement, but it's pitch black.")

@@ -6,7 +6,7 @@
 #Internal imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
-from text_effects import type_text
+from text_effects import type_text, slow_dotted_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 
@@ -95,18 +95,26 @@ def locked_door_interaction():
         return
 
     type_text("\nYou reach out and...", delay=0.03)
-    type_text("\n* THUMP * THUMP * THUMP *", delay=0.5)
+    time.sleep(1)
+    print()
+    print("*THUMP*")
+    time.sleep(1)
+    print()
+    print("*THUMP*")
+    time.sleep(1)
+    print()
+    print("*THUMP*")
     time.sleep(2)
-    type_text("\nThere’s no response... Just silence...")
-
-    type_text("\nYou grip the handle and turn. It won’t budge, locked tight...")
-
-    type_text("\nThen suddenly...")
+    type_text("\nThere’s no response, Just silence...")
+    time.sleep(2)
+    type_text("\nYou grip the handle and turn. It won’t budge, locked tight")
+    time.sleep(2)
+    slow_dotted_text("\nThen suddenly")
     type_text("\nCREEEEEAAAAK...", delay=0.5)
     time.sleep(1)
     type_text("\nThe door slowly swings open on its own...")
     time.sleep(1)
-    type_text("\nA gust of cold air rushes past you... The house is waiting...", delay=0.04)
+    type_text("\nA gust of cold air rushes past you... The house is waiting...")
 
     game_states.door_open = True  #The door is now open
     game_states.door_checked = True  #The player has tried the door at least once
@@ -115,9 +123,10 @@ def locked_door_interaction():
 #Enter house
 def enter_house():
     type_text("\nYou take a moment to prepare yourself and then you cross the threshold...")
-
-    type_text("\nSLAM!")
+    time.sleep(2)
+    print("\nSLAM!")
     type_text("\nThe door slams shut behind you.")
+    time.sleep(1.5)
 
     game_states.room_visits["room_3_porch"] += 1  #Increment visit count
     visit_room("room_4_entryway")  #Move the player into the house
