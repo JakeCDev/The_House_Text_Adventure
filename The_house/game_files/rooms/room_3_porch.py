@@ -124,7 +124,8 @@ def locked_door_interaction():
 def enter_house():
     type_text("\nYou take a moment to prepare yourself and then you cross the threshold...")
     time.sleep(2)
-    print("\nSLAM!")
+    print(ascii_art["slam"])
+    time.sleep(1.5)
     type_text("\nThe door slams shut behind you.")
     time.sleep(1.5)
 
