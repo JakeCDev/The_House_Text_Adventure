@@ -200,6 +200,10 @@ def check_entryway_for_door():
 #======================================================================
 
 def check_fuse_box():
+
+    #prevent circular import since visit room - game mechanics - debug causes loop
+    from debug_mode import debug_menu
+
     #If power is already restored, display a short message and return
     if game_states.power_restored:
         type_text("\nThe fuse box hums softly. The lights are already on. No need to risk getting shocked again now.")
