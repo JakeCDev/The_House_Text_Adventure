@@ -10,6 +10,8 @@ from debug_mode import debug_menu  #Import debug mode
 import game_states
 import game_intro #Import game into dialogue
 from rooms.room_1_car import room_1_car
+from save_system import load_game
+
 
 #======================================================================
 
@@ -56,14 +58,17 @@ def start_menu():
 
     #pause for exit instruction
     time.sleep(2)
-    type_text("\n• To exit, you may close the game window or press Ctrl+C at any time.")
+    type_text("\n• To fully exit, you may close the game window or press Ctrl+C at any time.")
+    time.sleep(1)
+    type_text("\n• Type 'pause' at any time in the game menus to open the pause menu. From there, you can save, load, or exit.")
     time.sleep(2)
 #======================================================================
 
-    #Give "begin game" and "exit" choices.
+    #Give begin, load, and exit chocies
     while True:  #Loop until the user enters a valid option
         print("\n1. Begin Game")
-        print("2. Exit")
+        print("2. Load Game")
+        print("3. Exit")
 
         choice = input("\nEnter choice: ").strip().lower()  #Strips unwanted spaces and .lower to convert to lowercase
 
@@ -72,12 +77,27 @@ def start_menu():
             print()#blank line
             time.sleep(2)
             return "start_game"  #Return control to main.py - sends back with start game as choice
+
         elif choice == "2":
+            if load_game():
+                from game_mechanics import visit_room
+                visit_room(game_states.current_room)  #Resume game from saved state
+                return  #Return after loading to prevent loop
+            else:
+                print("\nNo saved game found. Returning to menu...")
+
+        elif choice == "3":
             type_text("\nYou hesitate... Then decide it’s probably best to just stay put.")
             exit()#Quits game
+
         elif choice == "debug":
             debug_menu()  #Call the debug menu
             continue
+
+        elif choice == "pause":
+            from pause_menu import pause_menu
+            pause_menu()
+
         else:
             print("\nInvalid choice. Type the number associated with your option and try again.")  #Reloads if invalid choice
 

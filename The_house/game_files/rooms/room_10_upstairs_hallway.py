@@ -9,6 +9,8 @@ from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
+from pause_menu import pause_menu
+
 
 #======================================================================
 
@@ -95,6 +97,9 @@ def room_10_upstairs_hallway():
         elif choice == "debug":
             debug_menu()  #Call the debug menu
 
+        elif choice == "pause":
+            pause_menu()
+
         else:
             print("\nInvalid choice. Try again.")
 
@@ -133,6 +138,9 @@ def look_around_upstairs_hallway():
 
         elif choice == "debug":
             debug_menu()  #Calls the debug menu
+
+        elif choice == "pause":
+            pause_menu()
 
         else:
             print("\nInvalid choice. Try again.")

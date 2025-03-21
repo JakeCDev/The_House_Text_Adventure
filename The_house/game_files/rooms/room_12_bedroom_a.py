@@ -9,6 +9,8 @@ from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
+from pause_menu import pause_menu
+
 
 #======================================================================
 
@@ -63,19 +65,28 @@ def room_12_bedroom_a():
 
         if choice == "1":
             look_around_bedroom_a()
+
         elif choice == "2":
             game_states.room_visits[room_name] += 1
             visit_room("room_10_upstairs_hallway")
+
         elif choice == "3":
             game_states.room_visits[room_name] += 1
             visit_room("room_13_attic")
+
         elif choice == "4":
             check_inventory(room_12_bedroom_a)
+
         elif choice == "5":
             universal_wait()
             input("\nPress Enter to continue.")
+
         elif choice == "debug":
             debug_menu()  #Calls the debug menu
+
+        elif choice == "pause":
+            pause_menu()
+
         else:
             print("\nInvalid choice. Try again.")
 
@@ -117,6 +128,9 @@ def look_around_bedroom_a():
 
         elif choice == "debug":
             debug_menu()  #Calls the debug menu
+
+        elif choice == "pause":
+            pause_menu()
 
         else:
             print("\nInvalid choice. Try again.")

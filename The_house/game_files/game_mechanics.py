@@ -201,8 +201,9 @@ def check_entryway_for_door():
 
 def check_fuse_box():
 
-    #prevent circular import since visit room - game mechanics - debug causes loop
+    #prevent circular import loop
     from debug_mode import debug_menu
+    from pause_menu import pause_menu
 
     #If power is already restored, display a short message and return
     if game_states.power_restored:
@@ -225,15 +226,23 @@ def check_fuse_box():
 
         if choice == "1":
             insert_fuse()
+
         elif choice == "2":
             remove_fuse()
+
         elif choice == "3":
             if activate_fuse_box():
                 return  #Exit immediately if power is restored
+
         elif choice == "4":
             return
+
         elif choice == "debug":
             debug_menu()  #Calls the debug menu
+
+        elif choice == "pause":
+            pause_menu()
+
         else:
             print("\nInvalid choice. Try again.")
 

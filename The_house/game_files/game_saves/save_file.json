@@ -1,0 +1,60 @@
+{
+    "player_name": "jake chrissinger",
+    "inventory": [
+        "Driver's License (jake chrissinger)",
+        "Map"
+    ],
+    "item_descriptions": {
+        "Screwdriver": "A rusty screwdriver. Could be useful for prying something open...",
+        "Locked Box": "A small, rusted lockbox. The lid is sealed shut. You\u2019ll need something to pry it open.",
+        "Lockbox Opened": "The rusted box you found, now opened. Inside were old photos, burnt papers, and a obituary.",
+        "Skeleton Key": "A heavy brass key. Looks important. Might unlock something upstairs...",
+        "Red Fuse": "A red-colored fuse. Looks intact. You might need this somewhere.",
+        "Green Fuse": "A green-colored fuse. Looks intact. You might need this somewhere.",
+        "Blue Fuse": "A blue-colored fuse. Looks intact. You might need this somewhere.",
+        "Safe Order Hint": "Down below, where there is no sight. At the table, in flickering light. Where the clock forgets what\u2019s wrong from right.",
+        "Fuse Order Hint": "Scrawled in the margins, barely readable, R.G.B",
+        "Attic Hint": "It's all hidden in the attic.",
+        "Basement Safe Password Hint": "You found a number '6' etched into the concrete walls of the basement.",
+        "Dining Room Safe Password Hint": "You found a number '7' scratched into the wood of the dining table.",
+        "Living Room Safe Password Hint": "The clock in the living room flickered strangely, displaying the time '3:00'. This might be important.",
+        "Map": "\n                                                    [ Attic ]\n                                                        |\n                                                  [ Bedroom A ]        [ Bedroom B ]\n                                                        |                  |\n                    [?????]                             [ Upstairs Hallway ]                          \n                       |                                        |   \n[ Basement ] ---- [ Kitchen ] -------------------------- [ Dining Room ]\n                       |                                        |\n                   [ Office ] ---- [ Entryway ] -------- [ Living Room ]\n                                        |                   \n                                    [ Porch ]          \n                                        |                   \n                                    [ Road ]            \n                                        |                   \n                                     [ Car ]    ",
+        "Driver's License": "A worn-out driver's license. The name is hard to read...",
+        "Driver's License (jake chrissinger)": "A worn-out driver's license with the name 'jake chrissinger' on it. Feels... familiar."
+    },
+    "current_room": "room_3_porch",
+    "last_room": "room_1_car",
+    "room_visits": {
+        "room_1_car": 0,
+        "room_2_road": 0,
+        "room_3_porch": 0,
+        "room_4_entryway": 0,
+        "room_5_office": 0,
+        "room_6_kitchen": 0,
+        "room_7_basement": 0,
+        "room_8_living_room": 0,
+        "room_9_dining_room": 0,
+        "room_10_upstairs_hallway": 0,
+        "room_11_bedroom_a": 0,
+        "room_12_bedroom_b": 0,
+        "room_13_attic": 0
+    },
+    "door_open": false,
+    "door_checked": false,
+    "door_disappeared": false,
+    "front_door_warning_shown": false,
+    "power_restored": false,
+    "fuse_box": [
+        "Empty",
+        "Empty",
+        "Empty"
+    ],
+    "incorrect_fuse_attempts": 0,
+    "fuse_order_hint_found": false,
+    "safe_unlocked": false,
+    "incorrect_safe_attempts": 0,
+    "safe_order_hint_found": false,
+    "just_used_screwdriver": false,
+    "final_door_appeared": false,
+    "final_sequence_started": false
+}
