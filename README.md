@@ -25,6 +25,7 @@ Story Summary:
 2. Game Commands:
    - Type the number related to the action you wish to take
    - Type "debug" to enter the debug menu
+   - Type "pause" to enter the pause menu - allows access to save/load features
 
 #======================================================================
 
