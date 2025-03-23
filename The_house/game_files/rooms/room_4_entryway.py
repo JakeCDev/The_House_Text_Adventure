@@ -10,13 +10,24 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
 
 #======================================================================
 
 #External imports
 import random
 
+#======================================================================
+
+#colorize for red fuse def before the room to prevent circular imports / keep ascii dictionary clean
+
+def colorize_red_fuse():
+    fuse_art = ascii_art["red_fuse"]
+
+    for line in fuse_art.splitlines():
+        if "RED" in line:
+            line = line.replace("RED", f"{RED}RED{RESET}")
+        print(line)
 #======================================================================
 #Entryway function room: 4
 
@@ -31,22 +42,22 @@ def room_4_entryway():
     #Room state changes
     if visit_count == 0:  #Present
         type_text("\nAs you step into the room. The house creaks all around you.")
-        type_text("The entryway is dimly lit. Dust flows through the air.")
+        type_text(f"The entryway is dimly {YELLOW}lit{RESET}. Dust flows through the air.")
 
     elif visit_count == 1:  #Past
-        type_text("\nThe wallpaper is clean, the air carries the faint scent of coffee.")
+        type_text(f"\nThe wallpaper is clean, the air carries the faint scent of  {MAGENTA}flowers{RESET} and coffee.")
         type_text("Shoes are neatly placed by the front, keys on the table, as if someone was just here...")
 
     elif visit_count == 2:  #Future
-        type_text("\nThe walls have been repainted... A new table and coat rack stands where the old one was...")
+        type_text(f"\nThe walls have been repainted a deep {BLUE}blue{RESET} ... A new table and coat rack stands where the old one was...")
         type_text("It feels like someone else lives here now...")
 
     elif visit_count == 3:  #Eerie
         type_text("\nYour footsteps echo strangely, as if someone else is walking right behind you...")
-        type_text("The temperature drops almost instantly...")
+        type_text(f"The temperature drops instantly... sending a {CYAN}chill{RESET} down your spine...")
 
     else:  #Altered Reality
-        type_text("\nYou step inside, But the house is... wrong... twisted and altered...")
+        type_text(f"\nYou step inside, But {RED}the house{RESET} is... wrong... twisted and altered...")
         type_text("The room is now filled with stairs and doors leading nowhere...")
 
 #======================================================================
@@ -61,9 +72,9 @@ def room_4_entryway():
         print("1. Look around")
         print("2. Wait in the entryway")
         if not game_states.door_disappeared:
-            print("3. Check the front door")  #When the door is still there
+            print(f"3. {YELLOW}Check the front door{RESET}")  #When the door is still there
         else:
-            print("3. Check where the door once stood")  #After the door vanishes
+            print(f"3. {RED}Check where the door once stood{RESET}")  #After the door vanishes
         print("4. Go west to the Office")
         print("5. Go east to the Living Room")
         print("6. Check Inventory")
@@ -76,7 +87,7 @@ def room_4_entryway():
 
         elif choice == "2":
             universal_wait()
-            input("\nPress Enter to continue.")
+            input(f"\nPress {GREEN}Enter{RESET} to continue.")
 
 
         elif choice == "3":  #check_front_door() handles what happens
@@ -105,7 +116,7 @@ def room_4_entryway():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================
 #Look around entryway
@@ -116,27 +127,27 @@ def look_around_entryway():
         print("1. The mirror on the wall")
         print("2. The coat rack")
         print("3. The closet")
-        print("4. Nevermind")
+        print(f"4. {RED}Nevermind{RESET}")
 
         choice = input("> ").strip()
 
         if choice == "1":
-            type_text("\nYou step up to the mirror. The reflection is hard to make out.")
+            type_text(f"\nYou step up to the mirror. {BRIGHT_WHITE}The reflection is hard to make out{RESET}.")
             print(ascii_art["mirror"])
 
         elif choice == "2":  #Red fuse
             if "Red Fuse" not in game_states.inventory and "Red Fuse" not in game_states.fuse_box:
                 type_text("\nAn old coat rack stands by the door. A single coat hangs there.")
-                type_text("Its pocket has a single Red Fuse.")
-                print(ascii_art["red_fuse"])
+                type_text(f"Its pocket has a single {MAGENTA}Red Fuse{RESET}.")
+                colorize_red_fuse()
                 game_states.inventory.append("Red Fuse")
-                type_text("This may be useful... you decide to take it for now.")
+                type_text(f"{GREEN}This may be useful... you decide to take it for now{RESET}.")
             else:
-                type_text("The coat's pockets are empty now.")
+                type_text(f"{YELLOW}The coat's pockets are empty now{RESET}.")
 
         elif choice == "3":
             type_text("\nThe closet is bare.")
-            type_text("For a moment, you think you hear something shuffling behind you...")
+            type_text(f"For a moment, you think you hear {RED}something{RESET} shuffling behind you...")
             print(ascii_art["door"])
 
         elif choice == "4":
@@ -149,6 +160,6 @@ def look_around_entryway():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again{RESET}.")
 #======================================================================
 

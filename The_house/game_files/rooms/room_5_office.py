@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
 
 #======================================================================
 
@@ -31,20 +31,20 @@ def room_5_office():
         type_text("A single chair is pushed neatly into it.")
 
     elif visit_count == 1:  #Past
-        type_text("\nA warm lamp glows on the desk. Papers are scattered almost as if mid-work.")
+        type_text(f"\nA warm lamp {YELLOW}glows{RESET} on the desk. Papers are scattered almost as if mid-work.")
         type_text("A half-eaten meal sits beside an open notebook.")
 
     elif visit_count == 2:  #Future
-        type_text("\nThe office has been nearly emptied... The desk is gone, the walls repainted. There are boxes everywhere...")
+        type_text(f"\nThe office has been nearly emptied... The desk is gone, the walls still {BLUE}wet{RESET} from being recently repainted, boxes everywhere...")
         type_text("Faint outlines of where pictures once hung are still visible.")
 
     elif visit_count == 3:  #Eerie
         type_text("\nThe curtains sway slightly, though there’s no breeze.")
-        type_text("You feel as if someone is watching...")
+        type_text(f"You feel as if {RED}someone{RESET} is watching...")
 
     else:  #Altered Reality
         type_text("\nThe desk is massive, stretching infinitely far...")
-        type_text("Papers fill the air, fluttering like trapped birds.")
+        type_text("Papers fly through and fill the air, fluttering like trapped birds.")
 
 #======================================================================
 
@@ -68,16 +68,16 @@ def room_5_office():
 
         elif choice == "2":
             universal_wait()
-            input("\nPress Enter to continue.")
+            input(f"\nPress {GREEN}Enter{RESET} to continue.")
 
         elif choice == "3":
-            type_text("\nYou walk towards the kitchen, the air growing colder as you move.")
+            type_text(f"\nYou walk towards the kitchen, the air growing {CYAN}colder{RESET} as you move.")
             game_states.room_visits[room_name] += 1
             visit_room("room_6_kitchen")
             break
 
         elif choice == "4":
-            type_text("\nYou step back into the entryway, the dim light flickering above.")
+            type_text(f"\nYou step back into the entryway, the dim {YELLOW}light{RESET} flickering above.")
             game_states.room_visits[room_name] += 1
             visit_room("room_4_entryway")
             break
@@ -92,7 +92,7 @@ def room_5_office():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================
 #Look around office
@@ -103,30 +103,31 @@ def look_around_office():
         print("1. The desk")
         print("2. The bookshelf")
         print("3. The filing cabinet")
-        print("4. Nevermind")
+        print(f"4. {RED}Nevermind{RESET}")
 
         choice = input("> ").strip()
 
         if choice == "1":
             type_text("\nThe desk is neat, almost too neat...")
-            type_text(f"The papers on top look shuffled but normal enough. Then it strikes you... {game_states.player_name}... as clear as day, scribbled on almost every sheet.")
-            print(ascii_art["desk"])
+            type_text(f"The papers on top look shuffled but normal enough. Then it strikes you... {RED}{game_states.player_name}{RESET}... as clear as day, scribbled on almost every sheet.")
+
 
         elif choice == "2":
             type_text("\nThe bookshelf is filled with old books, many of them worn and unreadable.")
-            type_text("One title stands out: 'The House'.")
+            type_text(f"One title stands out: {RED}'The House'{RESET}.")
             print(ascii_art["books"])
 
         elif choice == "3":
             if "Fuse Order Hint" not in game_states.inventory:  #Prevent duplicates
                 type_text("\nYou pull open a drawer in the filing cabinet. Most of the papers inside are faded or illegible.")
                 type_text("One page, however, catches your eye: a maintenance log for the electrical system.")
-                type_text("Scrawled in the margins, barely still readable: '**R → G → B**'.")
-                type_text("This might be important later...")
+                type_text(f"Scrawled in the margins, barely still readable: '{MAGENTA}**R → G → B**{RESET}'.")
+                type_text(f"{GREEN}This might be important later...{RESET}")
                 print(ascii_art["Fuse_Order_Hint"])
                 game_states.inventory.append("Fuse Order Hint")
             else:
-                type_text("\nYou've already noted down the important details from this drawer...")
+                type_text(f"\n{YELLOW}You've already noted down the important details from this drawer...{RESET}")
+                print(ascii_art["filing_cabinet"])
 
         elif choice == "4":
             return  #Exit back to office menu
@@ -138,6 +139,6 @@ def look_around_office():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================

@@ -10,6 +10,8 @@ from game_mechanics import visit_room, get_player_name
 from game_intro import game_intro
 import game_states  #Import game state tracker before anything else to ensure tracks properly
 from text_effects import type_text
+from color_scheme import BRIGHT_GREEN, RESET
+
 #======================================================================
 
 #External imports
@@ -30,7 +32,7 @@ def main():
         game_intro()
 
 #Ask for confirmation after intro but before the game sends you to the first room
-        input("\nPress enter to begin the game...")
+        input(f"\n{BRIGHT_GREEN}Press enter to begin the game...{RESET}")
         time.sleep(1)
         get_player_name()
         time.sleep(1)

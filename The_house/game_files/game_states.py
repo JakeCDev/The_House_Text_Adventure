@@ -83,16 +83,21 @@ room_aliases = {
     "porch": "room_3_porch",
     "entryway": "room_4_entryway",
     "entry way": "room_4_entryway",
+    "entry": "room_4_entryway",
     "office": "room_5_office",
     "kitchen": "room_6_kitchen",
     "basement": "room_7_basement",
     "living room": "room_8_living_room",
     "dining room": "room_9_dining_room",
     "upstairs hallway": "room_10_upstairs_hallway",
+    "upstairs": "room_10_upstairs_hallway",
+    "hallway": "room_10_upstairs_hallway",
     "bedroom b": "room_11_bedroom_b",
     "bedroom a": "room_12_bedroom_a",
     "attic": "room_13_attic",
-    "final room": "room_14_final_room"
+    "final room": "room_14_final_room",
+    "final": "room_14_final_room",
+    "finale": "room_14_final_room"
 }
 #======================================================================
 

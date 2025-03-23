@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
 
 #======================================================================
 
@@ -28,27 +28,27 @@ def room_7_basement():
     #Room state change
     if visit_count == 0:  #Present
         type_text("\nThe basement is cold and smells of mildew.")
-        type_text("The lightbulb flickers, weakly casting shadows.")
+        type_text(f"The lightbulb {YELLOW}flickers{RESET}, weakly casting shadows.")
 
     elif visit_count == 1:  #Past
-        type_text("\nShelves are neatly stocked, and a single bulb glows steadily.")
+        type_text(f"\nShelves are neatly stocked, and a single bulb {YELLOW}glows{RESET} steadily.")
         type_text("Tools and old keepsakes sit in labeled boxes, undisturbed.")
 
     elif visit_count == 2:  #Future
         type_text("\nThe basement is cleared out. Only dust and cobwebs remain.")
-        type_text("The air is filled with dust and feels stale...")
+        type_text(f"The air is filled with {BRIGHT_WHITE}dust{RESET} and feels stale...")
 
     elif visit_count == 3:  #Eerie
         type_text("\nFootsteps echo, but you’re the only one down here...")
-        type_text("Your heart races as your mind wanders...")
+        type_text(f"Your {RED}heart{RESET} races as your mind wanders...")
 
     else:  #Altered Reality
-        type_text("\nThe walls are wet, pulsing like living flesh.")
+        type_text(f"\nThe walls are {BLUE}wet{RESET}, pulsing like living flesh.")
         type_text("Your grasp on reality is slipping...")
 
     #Safe appears if not unlocked
     if not game_states.safe_unlocked:
-        type_text("\nIn the center of the room stands an old, rusted safe. What could be inside?")
+        type_text(f"\nIn the center of the room stands an old, rusted {MAGENTA}safe{RESET}. What could be inside?")
 
 #======================================================================
 
@@ -60,15 +60,15 @@ def room_7_basement():
     while True:
         print("\nWhat do you want to do?")
         print("1. Look around")
-        print("2. Go upstairs to the Kitchen")
-        print("3. Check Inventory")
-        print("4. Wait around the basement")
+        print("2. Wait around the basement")
+        print("3. Go upstairs to the Kitchen")
+        print("4. Check Inventory")
 
         #Show only correct safe response
         if not game_states.safe_unlocked:
-            print("5. Inspect the Safe")  #Safe is locked
+            print(f"5. {YELLOW}Inspect the Safe{RESET}")  #Safe is locked
         else:
-            print("5. Check out the open safe")  #Safe is already unlocked
+            print(f"5. {GREEN}Check out the open safe{RESET}")  #Safe is already unlocked
 
         choice = input("> ").strip()
 
@@ -76,30 +76,30 @@ def room_7_basement():
             look_around_basement()
 
         elif choice == "2":
+            universal_wait()
+            input(f"\nPress {GREEN}Enter{RESET} to continue.")
+
+        elif choice == "3":
             game_states.room_visits[room_name] += 1
             visit_room("room_6_kitchen")
 
-        elif choice == "3":
-            check_inventory(room_7_basement)
-
         elif choice == "4":
-            universal_wait()
-            input("\nPress Enter to continue.")
+            check_inventory(room_7_basement)
 
         elif choice == "5":
             if not game_states.safe_unlocked:
-                inspect_safe()  #Call safe function
+                inspect_safe()
             else:
-                type_text("\nThe safe is already open. There is nothing else in here.")
+                type_text(f"\n{YELLOW}The safe is already open. There is nothing else in here{RESET}.")
 
         elif choice == "debug":
-            debug_menu()  #Calls the debug menu
+            debug_menu()
 
         elif choice == "pause":
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
 #Looking around the basement
@@ -110,7 +110,7 @@ def look_around_basement():
         print("1. The Pipes")
         print("2. The Old Workbench")
         print("3. The Walls")
-        print("4. Nevermind")
+        print(f"4. {RED}Nevermind{RESET}")
 
         choice = input("> ").strip()
 
@@ -126,17 +126,16 @@ def look_around_basement():
         elif choice == "3":
             type_text("\nYour eyes trace the cracks in the walls.")
             type_text("One section looks different... like something was carved into it long ago.")
-            type_text("You rub away some of the dust. A single number is etched into the surface... 6.")
+            type_text(f"You rub away some of the dust. A single number is etched on the surface...")
+            print(f"{RED}{ascii_art['wall_etch']}{RESET}")
 
             if "Basement Safe Password Hint" not in game_states.inventory:
                 game_states.inventory.append("Basement Safe Password Hint")
-                type_text("This seems important... You should probably remember it.")
+                type_text(f"{GREEN}This seems important... You take note of it{RESET}.")
 
             else:
-                type_text("You've already taken note of this.")
+                type_text(f"{YELLOW}You've already taken note of this{RESET}.")
 
-            #Wall art
-            print(ascii_art["brick"])
 
         elif choice == "4":
             return  #Exit back to the basement menu
@@ -148,6 +147,6 @@ def look_around_basement():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================

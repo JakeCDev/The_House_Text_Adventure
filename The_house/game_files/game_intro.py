@@ -6,26 +6,54 @@
 #External imports
 import time
 import random
+from color_scheme import RED, BRIGHT_RED, GREEN, BRIGHT_GREEN, BLUE, BRIGHT_BLUE, YELLOW, BRIGHT_YELLOW, CYAN, BRIGHT_CYAN, MAGENTA, BRIGHT_MAGENTA, WHITE, BRIGHT_WHITE, RESET
+import random
+
+#======================================================================
 
 #Internal imports
-from text_effects import type_text, slow_drip  # Import text effects
+from text_effects import type_text, slow_drip, rain_drip  # Import text effects
 from ascii_art import ascii_art  # Import ASCII art dictionary
+
+#======================================================================
+
+#storm cloud art and rain mechanics
+
+def colorize_rain(rain_art):
+
+    rain_colors = [BLUE, CYAN, BRIGHT_BLUE, BRIGHT_CYAN, BRIGHT_WHITE]
+
+    for line in rain_art.strip("\n").splitlines():
+        colored_line = ""
+        for char in line:
+            if char in ["/", "\\", "|"]:
+                color = random.choice(rain_colors)
+                colored_line += f"{color}{char}{RESET}"
+            else:
+                colored_line += char
+        print(colored_line)
 
 #======================================================================
 
 #Create game intro function - leading to car/first room
 def game_intro():
-    #Repeating "Drip..." effect
-    for _ in range(3):
-        slow_drip("Drip...", letter_delay=0.3, dot_delay=0.7, pause_after=0.2)
-        time.sleep(0.5)
+    #Repeating rain effect
+    rain_drip()
+    time.sleep(0.5)
 
     #Slow text effect for dramatic intro
-    type_text("""
-The world is a haze. Darkness surrounds you. A ringing fills your ears.  
-For a moment, you can’t recall who you are… or even where you are…  
+    type_text(f"\n{BRIGHT_WHITE}The world is a haze...", delay=0.12)
+    type_text("Darkness surrounds you...", delay=0.11)
+    type_text("A ringing fills your ears...", delay=0.10)
+    type_text("\nFor a moment, you can’t recall who you are...", delay=0.085)
+    type_text("or even where you are...", delay=0.07)
+    time.sleep(0.8)
+    type_text(f"\n{RED}Pain...{RESET}", delay=0.15)
+    time.sleep(0.8)
 
-Pain. A dull ache throbs in your head. Stiffness in your neck. Something… something must have happened.  
+    # Stage 4: Regain clarity – normal pacing resumes
+    type_text("""
+A dull ache throbs in your head. Stiffness in your neck. Something… something must have happened.
 Slowly, the fog in your mind begins to lift.  
 
 Rain. You hear it clearly now, hammering against the windshield.  
@@ -48,19 +76,20 @@ A house in the distance… with a single, flickering light from within.
 You could stay put and wait for the storm to pass.  
 But it doesn’t look like it will let up anytime soon…  
 
-Something about that house draws you in, its faint light calling to you through the rain.  
+Something about that house draws you in, its faint {YELLOW}light{RESET} calling to you through the rain.  
 Maybe there’s someone inside who can help… or a phone to call for help.  
 
-Or perhaps, through some twist of fate, this house is a place you were always meant to find.  
+Or perhaps, through some twist of fate, you were always meant to find this place.  
 """)
-#======================================================================
-#Show storm ASCII art - Appears before user input for 'enter' in main.py
-    print(ascii_art["storm"])
+
+#Show storm ASCII art - appears before user input for enter in main.py
+    for line in ascii_art["storm"].strip("\n").splitlines(): #strips away the blank line after the print
+        print(f"{BRIGHT_WHITE}{line}{RESET}")
+    colorize_rain(ascii_art["rain"])
     time.sleep(1)
 
     return
-
-
 #======================================================================
+
 
  

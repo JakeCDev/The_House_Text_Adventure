@@ -4,7 +4,10 @@
 #======================================================================
 
 #internal imports
+
 from text_effects import type_text
+from color_scheme import GREEN, RED, BRIGHT_WHITE, RESET
+import game_states
 
 #======================================================================
 
@@ -12,7 +15,6 @@ from text_effects import type_text
 
 import json
 import os
-import game_states
 import time
 
 #======================================================================
@@ -68,14 +70,14 @@ def save_game():
     #succesful save message
     with open(SAVE_FILE, "w") as f:
         json.dump(data, f, indent=4)
-    print("\nGame saved successfully!")
+    print(f"\n{GREEN}Game saved successfully!{RESET}")
 
 #======================================================================
 
 #load game function
 def load_game():
     if not os.path.exists(SAVE_FILE):
-        print("\nNo save file found.")
+        print(f"\n{RED}No save file found.{RESET}")
         return False
 
     with open(SAVE_FILE, "r") as f:
@@ -109,16 +111,16 @@ def load_game():
     game_states.final_door_appeared = data.get("final_door_appeared", False)
     game_states.final_sequence_started = data.get("final_sequence_started", False)
 
-    print("\nGame loaded successfully.")
-    type_text("\nYou rub your wary eyes… as if waking from a long, drifting thought.")
+    print(f"\n{GREEN}Game loaded successfully.{RESET}")
+    type_text(f"\n{BRIGHT_WHITE}You rub your wary eyes… as if waking from a long, drifting thought.{RESET}")
     time.sleep(1.5)
-    type_text("\nWere you dreaming?")
-    type_text("No… you were here the whole time…")
+    type_text(f"\n{BRIGHT_WHITE}Were you dreaming?{RESET}")
+    type_text(f"{BRIGHT_WHITE}No… you were here the whole time…{RESET}")
     time.sleep(1.5)
-    type_text("Weren't you?")
+    type_text(f"{BRIGHT_WHITE}Weren't you?{RESET}")
     time.sleep(1.5)
-    type_text(f"\nYour mind re anchors to reality. You are {game_states.player_name}.")
-    type_text("And this place... the house... it never let you go.")
+    type_text(f"\n{BRIGHT_WHITE}Your mind re-anchors to reality. You are {game_states.player_name}.{RESET}")
+    type_text(f"And this place... the {RED}house{RESET}... it never let you go.")
     time.sleep(2)
 
     return True

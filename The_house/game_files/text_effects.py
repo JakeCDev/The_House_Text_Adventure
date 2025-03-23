@@ -5,7 +5,7 @@
 
 #Internal imports
 import game_states
-
+from color_scheme import BLUE, RESET
 
 #=====================================================================
 #Outer imports
@@ -72,5 +72,26 @@ def slow_dotted_text(text, dot_delay=0.4, char_delay=0.25): #adjust to change ti
         sys.stdout.flush()
 
     print()  #Move to the next line after effect completes
+
+#======================================================================
+
+#rain drip
+def rain_drip(repeats=3, delay=0.25, pause_between=0.6):
+    for _ in range(repeats):
+        print(BLUE + "D" + RESET)
+        time.sleep(delay)
+        print(BLUE + "r" + RESET)
+        time.sleep(delay)
+        print(BLUE + "i" + RESET)
+        time.sleep(delay)
+        print(BLUE + "p" + RESET)
+        time.sleep(delay)
+        print(BLUE + "." + RESET)
+        time.sleep(delay)
+        print(BLUE + "." + RESET)
+        time.sleep(delay)
+        print(BLUE + "." + RESET)
+        time.sleep(pause_between)
+        print()
 
 #======================================================================

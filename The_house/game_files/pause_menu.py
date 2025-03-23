@@ -8,6 +8,7 @@ from save_system import save_game, load_game
 from game_mechanics import visit_room
 from debug_mode import debug_menu
 import game_states
+from color_scheme import GREEN, RED, YELLOW, CYAN, MAGENTA, RESET
 
 #======================================================================
 
@@ -20,16 +21,16 @@ import game_states
 def pause_menu():
     while True:
         print("\n[PAUSED] What would you like to do?")
-        print("1. Resume Game")
-        print("2. Save Game")
-        print("3. Load Game")
-        print("4. Return to Main Menu")
-        print("5. Quit Game")
+        print(f"{MAGENTA}1. Resume Game{RESET}")
+        print(f"{GREEN}2. Save Game{RESET}")
+        print(f"{CYAN}3. Load Game{RESET}")
+        print(f"{YELLOW}4. Return to Main Menu{RESET}")
+        print(f"{RED}5. Quit Game{RESET}")
 
         choice = input("> ").strip().lower()
 
         if choice == "1":
-            print("\nResuming game...")
+            print(f"\n{GREEN}Resuming game...{RESET}")
             return  #Go back to wherever pause was triggered from
 
         elif choice == "2":
@@ -42,7 +43,7 @@ def pause_menu():
 
 
         elif choice == "4":
-            print("\nReturning to main menu...")
+            print(f"\n{YELLOW}Returning to main menu...{RESET}")
             from start_menu import start_menu  #prevents circular import
             choice = start_menu()
             if choice == "start_game":
@@ -52,11 +53,11 @@ def pause_menu():
             return
 
         elif choice == "5":
-            print("\nExiting game. Goodbye.")
+            print(f"\n{RED}Exiting game. Goodbye.{RESET}")
             exit()
 
         elif choice == "debug":
             debug_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again.{RESET}")

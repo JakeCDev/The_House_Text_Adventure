@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
 
 #======================================================================
 
@@ -27,24 +27,24 @@ def room_12_bedroom_a():
 
     #Room state changes
     if visit_count == 0:  #Present
-        type_text("\nThe bedroom is neat, yet untouched.")
-        type_text("The curtains are drawn, and a faint breeze stirs the dust.")
+        type_text("\nThe bedroom is neat and untouched.")
+        type_text("The curtains are drawn, a faint breeze stirs the dust.")
 
     elif visit_count == 1:  #Past
-        type_text("\nSunlight filters through the window.")
+        type_text(f"\n{YELLOW}Sunlight{RESET} filters through the window.")
         type_text("The bed is unmade, and the faint scent of perfume lingers.")
 
     elif visit_count == 2:  #Future
-        type_text("\nThe bedroom has been repainted, but it still feels empty.")
-        type_text("Only a few belongings remain scattered on the shelves.")
+        type_text(f"\nThe bedroom has been re furnished, even the {YELLOW}lighting{RESET} seems different.")
+        type_text("A few belongings remain scattered on shelves.")
 
     elif visit_count == 3:  #Eerie
-        type_text("\nYou hear faint whispers... but no one is here.")
-        type_text("The shadows stretch too far across the walls.")
+        type_text(f"\nYou hear faint {RED}whispers{RESET}... but no one is here.")
+        type_text("The shadows stretch far across the walls.")
 
     else:  #Altered Reality
-        type_text("\nThe room has no walls—only an endless expanse of doors leading to nowhere.")
-        type_text("The bed floats in midair, suspended by invisible forces.")
+        type_text("\nThe room has no walls, an endless desert filled with doors and hallways leading to nowhere.")
+        type_text("Nearby the bed floats midair, as if suspended in time.")
 
 #======================================================================
 
@@ -56,10 +56,10 @@ def room_12_bedroom_a():
     while True:
         print("\nWhat do you want to do?")
         print("1. Look around")
-        print("2. Go east to the Upstairs Hallway")
-        print("3. Take the ladder up to the Attic")
-        print("4. Check Inventory")
-        print("5. Wait around in Bedroom A")
+        print("2. Wait around in Bedroom A")
+        print("3. Go back to the Upstairs Hallway")
+        print(f"4. {GREEN}Take the ladder up to the Attic{RESET}")
+        print("5. Check Inventory")
 
         choice = input("> ").strip()
 
@@ -67,28 +67,28 @@ def room_12_bedroom_a():
             look_around_bedroom_a()
 
         elif choice == "2":
-            game_states.room_visits[room_name] += 1
-            visit_room("room_10_upstairs_hallway")
+            universal_wait()
+            input(f"\nPress {GREEN}Enter{RESET} to continue.")
 
         elif choice == "3":
             game_states.room_visits[room_name] += 1
-            visit_room("room_13_attic")
+            visit_room("room_10_upstairs_hallway")
 
         elif choice == "4":
-            check_inventory(room_12_bedroom_a)
+            game_states.room_visits[room_name] += 1
+            visit_room("room_13_attic")
 
         elif choice == "5":
-            universal_wait()
-            input("\nPress Enter to continue.")
+            check_inventory(room_12_bedroom_a)
 
         elif choice == "debug":
-            debug_menu()  #Calls the debug menu
+            debug_menu()  # Calls the debug menu
 
         elif choice == "pause":
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
 #Looking around in Bedroom A
@@ -99,28 +99,28 @@ def look_around_bedroom_a():
         print("1. The Mirror")
         print("2. The Bookshelf")
         print("3. The Nightstand")
-        print("4. Nevermind")
+        print(f"4. {RED}Nevermind{RESET}")
 
         choice = input("> ").strip()
 
         if choice == "1":
             type_text("\nThe mirror is covered in dust. You can barely make out your reflection...")
-            type_text("For a brief second, you thought you saw someone standing behind you.")
+            type_text(f"For a brief second, you thought you saw {RED}someone{RESET} standing behind you.")
             print(ascii_art["bedroom_a_mirror"])
 
         elif choice == "2":
             type_text("\nAn old journal sits on the shelf. The pages are torn and scattered.")
-            type_text("One page remains readable: 'It's all hidden in the attic.'")
+            type_text(f"One page remains barely legible : {RED}'It was all hidden in the attic'{RESET}.")
 
             if "Attic Hint" not in game_states.inventory:  #Prevents duplicate entries
-                type_text("This feels important... you should take note of this.")
+                type_text(f"This feels important... {GREEN}you take note of this{RESET}.")
                 print(ascii_art["bookshelf"])
                 game_states.inventory.append("Attic Hint")
             else:
-                type_text("You've already taken notes of this.")
+                type_text(f"{YELLOW}You've already taken notes of this{RESET}.")
 
         elif choice == "3":
-            type_text("\nThe nightstand is covered in dust. A small jewelry box sits on top.")
+            type_text("\nThe nightstand is covered in a thick layer of dust. A small jewelry box sits on top.")
             print(ascii_art["nightstand"])
 
         elif choice == "4":
@@ -133,6 +133,6 @@ def look_around_bedroom_a():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================

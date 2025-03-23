@@ -10,12 +10,14 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
+from color_scheme import YELLOW, BLUE, RED, BRIGHT_WHITE, RESET
 
 
 #======================================================================
 
 #External imports
 import random
+
 
 #======================================================================
 #Car function room: 1
@@ -26,27 +28,27 @@ def room_1_car():
 
     if visit_count == 0:  #Present
         type_text("\nYou sit in your broken-down car on the side of the road.")
-        type_text("The rain hammers against the windshield. The road ahead is dark and empty, not a single light in sight.")
+        type_text(f"The {BLUE}rain{RESET} hammers against the windshield. The road ahead is dark and empty, not a single {BRIGHT_WHITE}soul{RESET} in sight.")
 
     elif visit_count == 1:  #Past
         type_text("\nThe radio hums softly, playing a song you almost recognize, but the engine is still dead.")
-        type_text("The interior lights are all dimly lit... but you don’t remember turning them on.")
+        type_text(f"The interior lights are all dimly {YELLOW}lit{RESET}... but you don’t remember turning them on.")
         type_text("A bouquet of fresh flowers rests on the passenger seat...")
 
     elif visit_count == 2:  #Future
         type_text("\nThe car is different... No longer a broken down vehicle but a brand new vehicle yet, it still won't start...")
-        type_text("You peer down the middle of an empty stretch of road, surrounded by trees, the asphalt slick with rain.")
-        type_text("Somewhere in the distance, you think you hear tires screeching... or was it just thunder?")
+        type_text(f"You peer down the middle of an empty stretch of road, surrounded by trees, the asphalt slick with rain.")
+        type_text(f"Somewhere in the distance, you think you hear tires screeching... or was it just {YELLOW}thunder{RESET}?")
 
     elif visit_count == 3:  #Eerie
-        type_text("\nMovement flickers in the rearview...")
+        type_text(f"\n{RED}Movement{RESET} flickers in the rearview...")
         type_text("You whip around. Nothing. The seat is empty, just as it should be.")
         type_text("You must be exhausted... or maybe you hit your head harder than you thought?")
 
     else:  #Altered Reality
         type_text("\nYour car has warped completely...")
         type_text("The steering wheel is completely missing, the tires have twisted into melted spirals, and the dashboard drips as if made of wax.")
-        type_text("The rain falls in slow motion... The road stretches on forever in both directions as far as you can see...")
+        type_text(f"The {BLUE}rain{RESET} falls in slow motion... The road stretches on forever in both directions as far as you can see...")
 
 #======================================================================
     #Car art
@@ -72,7 +74,7 @@ def room_1_car():
             input("\nPress Enter to continue.")  #Pause before re-displaying menu
 
         elif choice == "3":
-            type_text("\nYou step out into the cold dark night. A dim light glows in the distance.")
+            type_text(f"\nYou step out into the cold dark night. A dim {YELLOW}light{RESET} glows in the distance.")
             type_text("You should hurry on out of the storm.")
             game_states.room_visits[room_name] += 1  #Update visit count
             visit_room("room_2_road")  #Move to the road
@@ -88,7 +90,7 @@ def room_1_car():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
 #Looking around the car
@@ -97,7 +99,7 @@ def look_around_car():
         type_text("\nYou scan the inside of your car. What do you want to check?")
         print("1. Glove compartment")
         print("2. Trunk")
-        print("3. Nevermind")
+        print(f"3. {RED}Nevermind{RESET}")
 
         choice = input("> ").strip()
 
@@ -119,6 +121,6 @@ def look_around_car():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Try again.")
+            print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================

@@ -11,7 +11,7 @@ import game_states
 import game_intro #Import game into dialogue
 from rooms.room_1_car import room_1_car
 from save_system import load_game
-
+from color_scheme import RED, GREEN, CYAN, MAGENTA, YELLOW, BRIGHT_RED, BRIGHT_GREEN, BRIGHT_YELLOW, BRIGHT_CYAN, BRIGHT_WHITE, RESET
 
 #======================================================================
 
@@ -23,14 +23,14 @@ import sys
 
 #Create start menu function
 def start_menu():
-    print("\n" + "=" * 70)  #Print border line
+    print(f"\n{RED}{'=' * 70}{RESET}")  #Print border line
 
     #blank line
     print()
 
-    slow_dotted_text("Hello traveler")
+    type_text(f"{BRIGHT_WHITE}Hello traveler...{RESET}", delay=.15)
     time.sleep(1)
-    type_text("\nWelcome and thank you for playing", delay= .15)  #slow text effect
+    type_text(f"\n{BRIGHT_WHITE}Welcome and thank you for playing{RESET}", delay=.15)  #slow text effect
 
     time.sleep(2.5)  #Small pause before logo
 
@@ -38,12 +38,12 @@ def start_menu():
     print()
 
     #game title
-    print(ascii_art["game_title"])
+    print(BRIGHT_RED + ascii_art["game_title"]+ RESET)
 
     #blank line
     print()
 
-    print("=" * 70)  #Borderline after flashing
+    print(f"\n{RED}{'=' * 70}{RESET}")  #Borderline after flashing
 
 #======================================================================
 
@@ -51,29 +51,30 @@ def start_menu():
     time.sleep(3)
 
     #Game instructions
-    slow_dotted_text("\nHow to Play")
+    type_text(f"\n{BRIGHT_GREEN}How to Play{RESET}", delay=.15)
     type_text("\n• Explore, uncover, and make choices by typing the number corresponding to the action you wish to take.")
-    type_text("\n• Search for clues, interact with objects, and uncover the truth lurking within The House.")
-    type_text("\nQuickly now the storm approaches... Time is fleeting... You don't have very much longer... Until madness takes it's toll...", delay=0.15)
+    type_text(f"\n• Search for clues, interact with objects, and uncover the truth lurking within {BRIGHT_RED}The House{RESET}.")
+    type_text("\nQuickly now the storm approaches... Time is fleeting... You don't have very much longer... Until madness takes it's toll...", delay=0.10)
 
     #pause for exit instruction
     time.sleep(2)
-    type_text("\n• To fully exit, you may close the game window or press Ctrl+C at any time.")
+    type_text(f"\n• To fully {RED}exit{RESET}, you may close the game window or press {RED}Ctrl+C{RESET} at any time.")
     time.sleep(1)
-    type_text("\n• Type 'pause' at any time in the game menus to open the pause menu. From there, you can save, load, or exit.")
+    type_text(f"\n• Type '{YELLOW}pause{RESET}' at any time in the game menus to open the pause menu. From there, you can {GREEN}save{RESET}, {CYAN}load{RESET}, or {RED}exit{RESET}.")
     time.sleep(2)
 #======================================================================
 
     #Give begin, load, and exit chocies
     while True:  #Loop until the user enters a valid option
-        print("\n1. Begin Game")
-        print("2. Load Game")
-        print("3. Exit")
+        print(BRIGHT_GREEN + "\n1. Begin Game" + RESET)
+        print(CYAN + "2. Load Game" + RESET)
+        print(BRIGHT_RED + "3. Exit" + RESET)
 
-        choice = input("\nEnter choice: ").strip().lower()  #Strips unwanted spaces and .lower to convert to lowercase
+        choice = input(f"\n{MAGENTA}Enter choice: {RESET}").strip().lower()  #Strips unwanted spaces and .lower to convert to lowercase
 
         if choice == "1":
-            slow_dotted_text("\nYou start to come to")
+            print()
+            type_text(f"{BRIGHT_WHITE}\nYou start to come to...{RESET}")
             print()#blank line
             time.sleep(2)
             return "start_game"  #Return control to main.py - sends back with start game as choice
@@ -84,10 +85,10 @@ def start_menu():
                 visit_room(game_states.current_room)  #Resume game from saved state
                 return  #Return after loading to prevent loop
             else:
-                print("\nNo saved game found. Returning to menu...")
+                print(BRIGHT_RED + "\nNo saved game found. Returning to menu..." + RESET)
 
         elif choice == "3":
-            type_text("\nYou hesitate... Then decide it’s probably best to just stay put.")
+            type_text(BRIGHT_RED + "\nYou hesitate... Then decide it’s probably best to just stay put." + RESET)
             exit()#Quits game
 
         elif choice == "debug":
@@ -99,7 +100,7 @@ def start_menu():
             pause_menu()
 
         else:
-            print("\nInvalid choice. Type the number associated with your option and try again.")  #Reloads if invalid choice
+            print(RED + "\nInvalid choice. Type the " + BRIGHT_RED + "number associated with your option" + RED + " and try again." + RESET)  #Reloads if invalid choice
 
 #======================================================================
 
