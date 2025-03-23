@@ -108,7 +108,7 @@ def look_around_bedroom_b():
 
         elif choice == "3":
             if "Safe Order Hint" not in game_states.inventory:
-                type_text("\nOn the desk, an old note sits under a layer of dust. It reads:")
+                type_text("\nOn the desk, a music box begins to play on its own... Next to it sits an old note under a layer of dust. It reads:")
                 type_text("\n\"First, down below, where there was no sight,")
                 type_text("\nThen at the table, in flickering light,")
                 type_text("\nAt last, where the clock forgets what’s wrong from right.")
