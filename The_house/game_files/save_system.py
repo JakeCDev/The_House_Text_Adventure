@@ -6,7 +6,7 @@
 #internal imports
 
 from text_effects import type_text
-from color_scheme import GREEN, RED, BRIGHT_WHITE, RESET
+from color_scheme import GREEN, RED, DIM_WHITE, RESET
 import game_states
 
 #======================================================================
@@ -112,14 +112,14 @@ def load_game():
     game_states.final_sequence_started = data.get("final_sequence_started", False)
 
     print(f"\n{GREEN}Game loaded successfully.{RESET}")
-    type_text(f"\n{BRIGHT_WHITE}You rub your wary eyes… as if waking from a long, drifting thought.{RESET}")
+    type_text(f"\n{DIM_WHITE}You rub your wary eyes… as if waking from a long, drifting thought.{RESET}")
     time.sleep(1.5)
-    type_text(f"\n{BRIGHT_WHITE}Were you dreaming?{RESET}")
-    type_text(f"{BRIGHT_WHITE}No… you were here the whole time…{RESET}")
+    type_text(f"\n{DIM_WHITE}Were you dreaming?{RESET}")
+    type_text(f"{DIM_WHITE}No… you were here the whole time…{RESET}")
     time.sleep(1.5)
-    type_text(f"{BRIGHT_WHITE}Weren't you?{RESET}")
+    type_text(f"{DIM_WHITE}Weren't you?{RESET}")
     time.sleep(1.5)
-    type_text(f"\n{BRIGHT_WHITE}Your mind re-anchors to reality. You are {game_states.player_name}.{RESET}")
+    type_text(f"\n{DIM_WHITE}Your mind re-anchors to reality. You are {game_states.player_name}.{RESET}")
     type_text(f"And this place... the {RED}house{RESET}... it never let you go.")
     time.sleep(2)
 

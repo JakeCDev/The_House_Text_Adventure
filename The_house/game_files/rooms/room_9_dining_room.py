@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
 
 #======================================================================
 
@@ -53,7 +53,7 @@ def room_9_dining_room():
 
     elif visit_count == 1:  #Past
         type_text("\nThe table is set for dinner, plates arranged neatly.")
-        type_text(f"You hear the faintest {BRIGHT_WHITE}echo{RESET} of laughter, distant and fading.")
+        type_text(f"You hear the faintest {DIM_WHITE}echo{RESET} of laughter, distant and fading.")
 
     elif visit_count == 2:  #Future
         type_text("\nThe dining room has been remodeled. A new table, new paintings, its all different now.")

@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
 
 #======================================================================
 
@@ -36,11 +36,11 @@ def room_8_living_room():
 
     elif visit_count == 2:  #Future
         type_text("\nNew furniture sits where the old couch once was.")
-        type_text(f"A modern TV is mounted on the wall, playing something you can’t quite {BRIGHT_WHITE}hear{RESET} or make out.")
+        type_text(f"A modern TV is mounted on the wall, playing something you can’t quite {DIM_WHITE}hear{RESET} or make out.")
 
     elif visit_count == 3:  #Eerie
         type_text("\nThe couch is warm, as if someone was just sitting there.")
-        type_text(f"The TV flickers on for a moment, playing {BRIGHT_WHITE}static{RESET} before shutting off.")
+        type_text(f"The TV flickers on for a moment, playing {DIM_WHITE}static{RESET} before shutting off.")
 
     else:  #Altered Reality
         type_text("\nThe room has changed drastically...")

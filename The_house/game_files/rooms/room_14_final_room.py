@@ -10,7 +10,7 @@ from game_mechanics import visit_room, distort_name, full_reset_game
 from start_menu import start_menu  #To return to the main menu
 from ascii_art import ascii_art
 from debug_mode import debug_menu
-from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, BRIGHT_CYAN, BRIGHT_BLUE, RESET
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, BRIGHT_CYAN, BRIGHT_BLUE, RESET
 
 #======================================================================
 
@@ -55,10 +55,10 @@ def room_14_final_room():
     room_name = "room_14_final_room"
     visit_count = game_states.room_visits.get(room_name, 0)
 
-    type_text(f"\n{BRIGHT_WHITE}You step through the doorway. The air is warm and familiar, like you have been here before{RESET}")
+    type_text(f"\n{DIM_WHITE}You step through the doorway. The air is warm and familiar, like you have been here before{RESET}")
     time.sleep(1)
 
-    type_text(f"{BRIGHT_WHITE}A soft{RESET} {YELLOW}glow{RESET} {BRIGHT_WHITE}fills the space ahead. It feels... safe{RESET}.")
+    type_text(f"{DIM_WHITE}A soft{RESET} {YELLOW}glow{RESET} {DIM_WHITE}fills the space ahead. It feels... safe{RESET}.")
     time.sleep(1)
 
     type_text("\nYour thoughts begin to clear. The memories return in waves...")

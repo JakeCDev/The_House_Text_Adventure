@@ -6,7 +6,7 @@
 #External imports
 import time
 import random
-from color_scheme import RED, BRIGHT_RED, GREEN, BRIGHT_GREEN, BLUE, BRIGHT_BLUE, YELLOW, BRIGHT_YELLOW, CYAN, BRIGHT_CYAN, MAGENTA, BRIGHT_MAGENTA, WHITE, BRIGHT_WHITE, RESET
+from color_scheme import RED, BRIGHT_RED, GREEN, BRIGHT_GREEN, BLUE, BRIGHT_BLUE, YELLOW, BRIGHT_YELLOW, CYAN, BRIGHT_CYAN, MAGENTA, BRIGHT_MAGENTA, WHITE, DIM_WHITE, RESET
 import random
 
 #======================================================================
@@ -21,7 +21,7 @@ from ascii_art import ascii_art  # Import ASCII art dictionary
 
 def colorize_rain(rain_art):
 
-    rain_colors = [BLUE, CYAN, BRIGHT_BLUE, BRIGHT_CYAN, BRIGHT_WHITE]
+    rain_colors = [BLUE, CYAN, BRIGHT_BLUE, BRIGHT_CYAN, DIM_WHITE]
 
     for line in rain_art.strip("\n").splitlines():
         colored_line = ""
@@ -42,7 +42,7 @@ def game_intro():
     time.sleep(0.5)
 
     #Slow text effect for dramatic intro
-    type_text(f"\n{BRIGHT_WHITE}The world is a haze...", delay=0.12)
+    type_text(f"\n{DIM_WHITE}The world is a haze...", delay=0.12)
     type_text("Darkness surrounds you...", delay=0.11)
     type_text("A ringing fills your ears...", delay=0.10)
     type_text("\nFor a moment, you can’t recall who you are...", delay=0.085)
@@ -84,7 +84,7 @@ Or perhaps, through some twist of fate, you were always meant to find this place
 
 #Show storm ASCII art - appears before user input for enter in main.py
     for line in ascii_art["storm"].strip("\n").splitlines(): #strips away the blank line after the print
-        print(f"{BRIGHT_WHITE}{line}{RESET}")
+        print(f"{DIM_WHITE}{line}{RESET}")
     colorize_rain(ascii_art["rain"])
     time.sleep(1)
 

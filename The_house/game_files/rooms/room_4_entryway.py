@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
 
 #======================================================================
 
@@ -132,7 +132,7 @@ def look_around_entryway():
         choice = input("> ").strip()
 
         if choice == "1":
-            type_text(f"\nYou step up to the mirror. {BRIGHT_WHITE}The reflection is hard to make out{RESET}.")
+            type_text(f"\nYou step up to the mirror. {DIM_WHITE}The reflection is hard to make out{RESET}.")
             print(ascii_art["mirror"])
 
         elif choice == "2":  #Red fuse

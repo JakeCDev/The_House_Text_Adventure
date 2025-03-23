@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
 
 
 #======================================================================
@@ -51,7 +51,7 @@ def room_6_kitchen():
 
     elif visit_count == 3:  #Eerie
         type_text("\nYou hear the sound of a knife chopping but the kitchen is vacant.")
-        type_text(f"The air carries a {BRIGHT_WHITE}metallic{RESET} scent and taste, sharp and unsettling.")
+        type_text(f"The air carries a {DIM_WHITE}metallic{RESET} scent and taste, sharp and unsettling.")
 
     else:  #Altered Reality
         type_text("\nA huge hole now fills the center of the room where there was once a table... it looks deep... with no bottom in sight...")
@@ -164,7 +164,7 @@ def look_around_kitchen():
                 else:
                     type_text(f"\n{YELLOW}The drawer is empty now{RESET}.")
             else:
-                type_text(f"\n{BRIGHT_WHITE}It's too dark to see inside the drawer{RESET}. You'll need to check back later one the {RED}power{RESET} is restored.")
+                type_text(f"\n{DIM_WHITE}It's too dark to see inside the drawer{RESET}. You'll need to check back later one the {RED}power{RESET} is restored.")
 
         elif choice == "4":
             return  #Exit back to the kitchen menu

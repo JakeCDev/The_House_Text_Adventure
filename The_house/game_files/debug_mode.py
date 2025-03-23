@@ -6,7 +6,7 @@
 #Internal imports
 from text_effects import type_text
 import game_states
-from color_scheme import RED, GREEN, YELLOW, BLUE, CYAN, MAGENTA, BRIGHT_MAGENTA, BRIGHT_YELLOW, BRIGHT_CYAN, BRIGHT_WHITE, RESET
+from color_scheme import RED, GREEN, YELLOW, BLUE, CYAN, MAGENTA, BRIGHT_MAGENTA, BRIGHT_YELLOW, BRIGHT_CYAN, DIM_WHITE, RESET
 from game_mechanics import visit_room
 
 #======================================================================
@@ -47,7 +47,7 @@ def debug_menu():
     print(f"Type '{GREEN}help{RESET}' for a list of debug commands.")
 
     while True:
-        command = input("\n[DEBUG] > ").strip().lower()
+        command = input(f"\n{BRIGHT_YELLOW}[DEBUG] > ").strip().lower()
 
 #======================================================================
 

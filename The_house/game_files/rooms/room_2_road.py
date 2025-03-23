@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, RED, WHITE, CYAN, BLUE, BRIGHT_BLUE, BRIGHT_CYAN, BRIGHT_YELLOW, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, RED, WHITE, CYAN, BLUE, BRIGHT_BLUE, BRIGHT_CYAN, BRIGHT_YELLOW, DIM_WHITE, RESET
 
 
 #======================================================================
@@ -23,7 +23,7 @@ import random
 #Sky coloring function - def before the room to prevent circular imports / keep ascii dictionary clean
 def colorized_sky(sky_art):
     sky_colors = {
-        '*': [WHITE, BRIGHT_WHITE, CYAN],
+        '*': [WHITE, DIM_WHITE, CYAN],
         'o': [YELLOW, BRIGHT_YELLOW],
         '/': [BRIGHT_CYAN, BRIGHT_BLUE],
         '\\': [BRIGHT_CYAN, BRIGHT_BLUE],
@@ -59,7 +59,7 @@ def room_2_road():
 
     elif visit_count == 2:  #Future
         type_text("\nThe road is cracked and overgrown. Covered in tire tracks and debris...")
-        type_text(f"{BRIGHT_WHITE}It feels like no one has walked this path in years...{RESET}")
+        type_text(f"{DIM_WHITE}It feels like no one has walked this path in years...{RESET}")
 
     elif visit_count == 3:  #Eerie
         type_text("\nThe trees seem taller than before, their branches stretching toward you.")
@@ -135,12 +135,12 @@ def look_around_road():
 
         if choice == "1":
             type_text("\nThe trees are tall and twisted. Their branches reaching upward.")
-            type_text(f"You have the distinct feeling that... {BRIGHT_WHITE}something{RESET} is watching you.")
+            type_text(f"You have the distinct feeling that... {DIM_WHITE}something{RESET} is watching you.")
             print(ascii_art["tree"])
 
         elif choice == "2":
             type_text("\nYou step closer to the signpost. Unfortunately, the letters are too faded to read, perhaps it's for a nearby town.")
-            type_text(f"For a moment, the words look... {BRIGHT_WHITE}wrong{RESET}. Almost foreign.")
+            type_text(f"For a moment, the words look... {DIM_WHITE}wrong{RESET}. Almost foreign.")
             print(ascii_art["signpost"])
 
         elif choice == "3":

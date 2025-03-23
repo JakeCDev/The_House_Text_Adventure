@@ -31,5 +31,7 @@ BRIGHT_WHITE = Style.BRIGHT + Fore.WHITE
 
 #======================================================================
 #Style
+DIM = Style.DIM
+DIM_WHITE = Style.DIM + Fore.WHITE
 BOLD = Style.BRIGHT
 RESET = Style.RESET_ALL  #call this after printing color to reset console

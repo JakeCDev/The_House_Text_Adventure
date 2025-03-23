@@ -10,7 +10,7 @@ from text_effects import type_text, slow_dotted_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, GREEN, BRIGHT_WHITE, RED, BLUE, CYAN, MAGENTA, RESET
+from color_scheme import YELLOW, GREEN, DIM_WHITE, RED, BLUE, CYAN, MAGENTA, RESET
 
 #======================================================================
 
@@ -23,7 +23,7 @@ import time
 #colorize for porch - def before the room to prevent circular imports / keep ascii dictionary clean
 def colorized_porch():
     porch_art = ascii_art["porch"]
-    colors = [BLUE, CYAN, BRIGHT_WHITE]
+    colors = [BLUE, CYAN, DIM_WHITE]
 
     for char in porch_art:
         if char == "*":
@@ -46,7 +46,7 @@ def room_3_porch():
         type_text(f"The front door stands closed before you. A dim {YELLOW}light{RESET} flickering inside.")
 
     elif visit_count == 1:  #Past
-        type_text(f"\nThe air is thick here. The porch feels... {BRIGHT_WHITE}different...{RESET}")
+        type_text(f"\nThe air is thick here. The porch feels... {DIM_WHITE}different...{RESET}")
         type_text("The door seems farther away than before...")
 
     elif visit_count == 2:  #Future
@@ -116,13 +116,13 @@ def locked_door_interaction():
     type_text("\nYou reach out and...", delay=0.03)
     time.sleep(1)
     print()
-    print(f"{BRIGHT_WHITE}*THUMP*{RESET}")
+    print(f"{DIM_WHITE}*THUMP*{RESET}")
     time.sleep(1)
     print()
-    print(f"{BRIGHT_WHITE}*THUMP*{RESET}")
+    print(f"{DIM_WHITE}*THUMP*{RESET}")
     time.sleep(1)
     print()
-    print(f"{BRIGHT_WHITE}*THUMP*{RESET}")
+    print(f"{DIM_WHITE}*THUMP*{RESET}")
     time.sleep(2)
     type_text("\nThere’s no response, Just silence...")
     time.sleep(2)
@@ -131,7 +131,7 @@ def locked_door_interaction():
     slow_dotted_text("\nThen suddenly")
     type_text(f"\n{RED}CREEEEEAAAAK......{RESET}", delay=0.5)
     time.sleep(1)
-    type_text(f"\n{BRIGHT_WHITE}The door slowly swings open on its own...{RESET}")
+    type_text(f"\n{DIM_WHITE}The door slowly swings open on its own...{RESET}")
     time.sleep(1)
     type_text(f"\nA gust of cold air rushes past you... {RED}The house{RESET} is waiting...")
 
@@ -166,12 +166,12 @@ def look_around_porch():
 
         if choice == "1":
             type_text("\nA single rocking chair sits on the porch, swaying slightly.")
-            type_text(f"{BRIGHT_WHITE}Though the wind has stopped blowing completely...{RESET}")
+            type_text(f"{DIM_WHITE}Though the wind has stopped blowing completely...{RESET}")
             print(ascii_art["rocking_chair"])
 
         elif choice == "2":
             type_text("\nYou step closer to the window. The glass is cracked and dirty.")
-            type_text(f"For a moment, your reflection seems {BRIGHT_WHITE}strange{RESET}. Like someone else is staring back at you.")
+            type_text(f"For a moment, your reflection seems {DIM_WHITE}strange{RESET}. Like someone else is staring back at you.")
             print(ascii_art["window"])
 
         elif choice == "3":

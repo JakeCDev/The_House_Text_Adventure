@@ -11,7 +11,7 @@ import game_states
 import game_intro #Import game into dialogue
 from rooms.room_1_car import room_1_car
 from save_system import load_game
-from color_scheme import RED, GREEN, CYAN, MAGENTA, YELLOW, BRIGHT_RED, BRIGHT_GREEN, BRIGHT_YELLOW, BRIGHT_CYAN, BRIGHT_WHITE, RESET
+from color_scheme import RED, GREEN, CYAN, MAGENTA, YELLOW, BRIGHT_RED, BRIGHT_GREEN, BRIGHT_YELLOW, BRIGHT_CYAN, DIM_WHITE, RESET
 
 #======================================================================
 
@@ -28,9 +28,9 @@ def start_menu():
     #blank line
     print()
 
-    type_text(f"{BRIGHT_WHITE}Hello traveler...{RESET}", delay=.15)
+    type_text(f"{DIM_WHITE}Hello traveler...{RESET}", delay=.15)
     time.sleep(1)
-    type_text(f"\n{BRIGHT_WHITE}Welcome and thank you for playing{RESET}", delay=.15)  #slow text effect
+    type_text(f"\n{DIM_WHITE}Welcome and thank you for playing{RESET}", delay=.15)  #slow text effect
 
     time.sleep(2.5)  #Small pause before logo
 
@@ -74,7 +74,7 @@ def start_menu():
 
         if choice == "1":
             print()
-            type_text(f"{BRIGHT_WHITE}\nYou start to come to...{RESET}")
+            type_text(f"{DIM_WHITE}\nYou start to come to...{RESET}")
             print()#blank line
             time.sleep(2)
             return "start_game"  #Return control to main.py - sends back with start game as choice

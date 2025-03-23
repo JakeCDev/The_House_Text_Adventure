@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, BLUE, RED, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, BLUE, RED, DIM_WHITE, RESET
 
 
 #======================================================================
@@ -28,7 +28,7 @@ def room_1_car():
 
     if visit_count == 0:  #Present
         type_text("\nYou sit in your broken-down car on the side of the road.")
-        type_text(f"The {BLUE}rain{RESET} hammers against the windshield. The road ahead is dark and empty, not a single {BRIGHT_WHITE}soul{RESET} in sight.")
+        type_text(f"The {BLUE}rain{RESET} hammers against the windshield. The road ahead is dark and empty, not a single {DIM_WHITE}soul{RESET} in sight.")
 
     elif visit_count == 1:  #Past
         type_text("\nThe radio hums softly, playing a song you almost recognize, but the engine is still dead.")

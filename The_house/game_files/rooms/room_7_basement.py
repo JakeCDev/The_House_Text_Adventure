@@ -10,7 +10,7 @@ from text_effects import type_text
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
-from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, BRIGHT_WHITE, RESET
+from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
 
 #======================================================================
 
@@ -36,7 +36,7 @@ def room_7_basement():
 
     elif visit_count == 2:  #Future
         type_text("\nThe basement is cleared out. Only dust and cobwebs remain.")
-        type_text(f"The air is filled with {BRIGHT_WHITE}dust{RESET} and feels stale...")
+        type_text(f"The air is filled with {DIM_WHITE}dust{RESET} and feels stale...")
 
     elif visit_count == 3:  #Eerie
         type_text("\nFootsteps echo, but you’re the only one down here...")
