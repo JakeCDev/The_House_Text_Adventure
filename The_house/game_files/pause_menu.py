@@ -45,7 +45,12 @@ def pause_menu():
         elif choice == "4":
             print(f"\n{YELLOW}Returning to main menu...{RESET}")
             from start_menu import start_menu  #prevents circular import
-            choice = start_menu()
+            from game_mechanics import full_reset_game
+
+            full_reset_game()  #Reset all game states and sounds
+
+            choice = start_menu()  #Restart main menu fresh
+
             if choice == "start_game":
                 from rooms.room_1_car import room_1_car
                 room_1_car()

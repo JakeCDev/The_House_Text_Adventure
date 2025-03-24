@@ -21,13 +21,12 @@ import sys
 #Create start menu function
 def start_menu():
 
-    #SPECIAL DEBUG MODE!!!!!!!!!!!!
-    #pre-launch debug shortcut, # it out when not in use.
-    #debug_choice = input(f"\n{YELLOW}(Debug shortcut){RESET} Type{YELLOW} 'debug'{RESET} to enter debug mode, or press {GREEN}Enter{RESET} to continue: ").strip().lower()
-    #if debug_choice == "debug":
-        #debug_menu()
-        #return  #Return to prevent the rest of the menu from loading
-    #SPECIAL DEBUG MODE!!!!!!!!!!!
+    #SPECIAL DEBUG MODE, remove the #'s when debugging! Do not forget to replace before uploading game code.
+    debug_choice = input(f"\n{YELLOW}(Debug shortcut){RESET} Type{YELLOW} 'debug'{RESET} to enter debug mode, or press {GREEN}Enter{RESET} to continue: ").strip().lower()
+    if debug_choice == "debug":
+        debug_menu()
+        return  #Return to prevent the rest of the menu from loading
+    #SPECIAL DEBUG MODE, remove the #'s when debugging! Do not forget to replace before uploading game code.
 
     #start intro/start menu music on launch
     play_music("intro_music.wav", volume=0.4)  #Start looping intro music

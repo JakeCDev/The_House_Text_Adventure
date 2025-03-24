@@ -8,6 +8,8 @@
 from text_effects import type_text
 from color_scheme import GREEN, RED, DIM_WHITE, RESET
 import game_states
+from sound_manager import stop_music, stop_all_ambient, sync_ambient_to_room
+from game_states import room_sound_map
 
 #======================================================================
 
@@ -110,6 +112,10 @@ def load_game():
 
     game_states.final_door_appeared = data.get("final_door_appeared", False)
     game_states.final_sequence_started = data.get("final_sequence_started", False)
+
+    stop_music()
+    stop_all_ambient()
+    sync_ambient_to_room(game_states.current_room, room_sound_map)
 
     print(f"\n{GREEN}Game loaded successfully.{RESET}")
     type_text(f"\n{DIM_WHITE}You rub your wary eyes… as if waking from a long, drifting thought.{RESET}")

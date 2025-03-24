@@ -9,7 +9,7 @@ from room_loader import load_room
 from text_effects import type_text
 from ascii_art import ascii_art
 from color_scheme import GREEN, MAGENTA, CYAN, BLUE, RED, YELLOW, BRIGHT_GREEN, BRIGHT_MAGENTA, BRIGHT_CYAN, BRIGHT_BLUE, BRIGHT_RED, BRIGHT_YELLOW, RESET
-from sound_manager import play_ambient_loop, stop_ambient_loop, set_ambient_volume, play_sound_effect
+from sound_manager import play_ambient_loop, stop_ambient_loop, set_ambient_volume, play_sound_effect, stop_all_ambient, stop_music, sync_ambient_to_room
 import random
 import time
 import string
@@ -452,12 +452,17 @@ def inspect_safe():
                 visit_room("room_7_basement")  #Move to basement after unlocking the safe
                 break
 
+
+
             else:
+                # Incorrect code
                 game_states.incorrect_safe_attempts += 1
+
+                # First fail beep
                 play_sound_effect("safe_fail.wav", volume=0.8)
                 type_text(f"\n{RED}The keypad beeps... 'access denied'{RESET}.")
 
-                #Spooky warnings for wrong attempts
+                # Second fail beep + spooky effects
                 if game_states.incorrect_safe_attempts == 1:
                     play_sound_effect("safe_fail.wav", volume=0.8)
                     type_text(f"\nA {BLUE}chill{RESET} runs down your spine...")
@@ -466,16 +471,17 @@ def inspect_safe():
                     play_sound_effect("safe_fail.wav", volume=0.8)
                     time.sleep(1.0)
                     play_sound_effect("creepy_laugh.wav", volume=0.8)
-                    type_text(f"\nThe rusted safe rattles slightly. A deep, guttural sound echoes from inside the {RED}darkness{RESET}.")
+                    type_text(f"\nThe rusted safe rattles slightly. A eerie sound echoes from inside the {RED}darkness{RESET}.")
 
-                #Fail condition - resets game after 3 failed attempts
-                if game_states.incorrect_safe_attempts >= 3:
+
+                elif game_states.incorrect_safe_attempts >= 3:
                     play_sound_effect("safe_fail.wav", volume=0.8)
                     type_text(f"\n{RED}A suffocating darkness fills the room. The air grows ice cold around you{RESET}.")
+                    type_text(f"\nThe rusted safe rattles slightly. A deep, guttural sound echoes from inside the {RED}darkness{RESET}.")
                     type_text(f"{RED}A hand not your own grips your shoulder... Your vision fades...{RESET}")
                     reset_game()
                     break
-                play_sound_effect("safe_fail.wav", volume=0.8)
+
                 input(f"\n{RED}Incorrect code{RESET}. Press {GREEN}Enter{RESET} to try again.")
 
         elif choice == "2":
@@ -569,7 +575,7 @@ def distort_name(player_name, stage):
 
 #for failed mechanic reset
 def reset_game():
-    global door_disappeared, front_door_warning_shown, door_open, door_checked, inventory, fuse_order_hint_found, safe_order_hint_found
+    from game_states import room_sound_map
 
     #Preserve the Driver's License
     driver_license = [item for item in game_states.inventory if "Driver's License" in item]
@@ -588,12 +594,17 @@ def reset_game():
     fuse_order_hint_found = False
     safe_order_hint_found = False
 
-    type_text(f"\n{MAGENTA}A strange sense of déjà vu washes over you...{RESET}")
-    play_sound_effect("ghost_reset.wav", volume=0.8)
-    time.sleep(4)
+    play_sound_effect("ghost_reset.wav", volume=1.0)
+    time.sleep(1.0)
+    type_text(f"\n{MAGENTA}A strange sense of déjà vu washes over you...{RESET}", delay=0.25)
+    time.sleep(5.0)
 
     #manually increment count since not using normal room move
     game_states.room_visits["room_1_car"] += 1
+
+    stop_music()
+    stop_all_ambient()
+    sync_ambient_to_room("room_1_car", room_sound_map)
 
     #send back to car
     visit_room("room_1_car")
@@ -602,6 +613,8 @@ def reset_game():
 #total reset
 def full_reset_game():
     #Completely resets ALL game states
+
+    from game_states import room_sound_map
 
     #Reset core game tracking variables
     game_states.current_room = "room_1_car"
@@ -627,6 +640,10 @@ def full_reset_game():
     #Reset item discovery tracking
     game_states.fuse_order_hint_found = False
     game_states.safe_order_hint_found = False
+
+    stop_music()
+    stop_all_ambient()
+    sync_ambient_to_room("start_menu", room_sound_map)
 
     type_text(f"\n{MAGENTA}Everything fades... and when you open your eyes, it is as if nothing ever happened{RESET}.")
 

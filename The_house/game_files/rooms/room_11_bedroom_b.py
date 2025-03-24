@@ -109,7 +109,7 @@ def look_around_bedroom_b():
                 stop_ambient_loop("house", fade_out=1000)
                 time.sleep(1)
                 play_ambient_loop("music_box", "music_box.wav", 0.6)
-                time.sleep(6)
+                time.sleep(8)
                 type_text("\nOn the desk, a music box begins to play on its own... Next to it sits an old note under a layer of dust. It reads:")
                 type_text("\n\"First, down below, where there was no sight,")
                 type_text("\nThen at the table, in flickering light,")
