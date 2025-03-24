@@ -11,11 +11,7 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-
-#======================================================================
-
-#External imports
+from sound_manager import play_ambient_loop, stop_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
@@ -33,9 +29,15 @@ def colorize_blue_fuse():
 #Kitchen function
 
 def room_6_kitchen():
+
     # Room tracker
     room_name = "room_6_kitchen"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    stop_ambient_loop("ghost", fade_out=1000)
+    stop_ambient_loop("drip", fade_out=1000)
+    play_ambient_loop("house", "house_loop.wav", 0.6)
 
     if visit_count == 0:  #Present
         type_text("\nThe kitchen is eerily quiet. A thin layer of dust coats the countertops.")
@@ -50,7 +52,7 @@ def room_6_kitchen():
         type_text("A child's drawing is pinned to the fridge.")
 
     elif visit_count == 3:  #Eerie
-        type_text("\nYou hear the sound of a knife chopping but the kitchen is vacant.")
+        type_text("\nYou thought you heard the sound of a knife chopping but the kitchen is vacant.")
         type_text(f"The air carries a {DIM_WHITE}metallic{RESET} scent and taste, sharp and unsettling.")
 
     else:  #Altered Reality
@@ -102,6 +104,7 @@ def room_6_kitchen():
         elif choice == "5":  #Block basement until power is restored
             if game_states.power_restored:
                 type_text(f"\nThe basement is now dimly {YELLOW}lit{RESET}. You cautiously step down the stairs.")
+                play_sound_effect("stair_sound.wav")
                 game_states.room_visits[room_name] += 1
                 visit_room("room_7_basement")
             else:

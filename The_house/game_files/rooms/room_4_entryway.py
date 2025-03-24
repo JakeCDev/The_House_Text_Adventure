@@ -11,10 +11,7 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import play_ambient_loop, stop_ambient_loop, set_ambient_volume, play_sound_effect
 import random
 
 #======================================================================
@@ -32,9 +29,17 @@ def colorize_red_fuse():
 #Entryway function room: 4
 
 def room_4_entryway():
+
     #Room tracker
     room_name = "room_4_entryway"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #stop outside music and sounds and begin house music.
+    stop_ambient_loop("rain", fade_out=1000)
+    stop_ambient_loop("wind", fade_out=1000)
+    stop_ambient_loop("spooky", fade_out=1000)
+    stop_ambient_loop("vintage", fade_out=1000)
+    play_ambient_loop("house", "house_loop.wav", 0.6)
 
     #Check if the front door has disappeared
     check_entryway_for_door()
@@ -64,6 +69,7 @@ def room_4_entryway():
 
     #Entryway art
     print(ascii_art["entryway"])
+    play_sound_effect("thunder_2.wav", volume=0.4)
 
 #======================================================================
 #Entryway choices

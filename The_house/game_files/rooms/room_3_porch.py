@@ -11,12 +11,9 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, GREEN, DIM_WHITE, RED, BLUE, CYAN, MAGENTA, RESET
-
-#======================================================================
-
-#External imports
 import random
 import time
+from sound_manager import play_ambient_loop, stop_ambient_loop, set_ambient_volume, play_sound_effect
 
 #======================================================================
 
@@ -40,9 +37,15 @@ def room_3_porch():
     room_name = "room_3_porch"
     visit_count = game_states.room_visits.get(room_name, 0)
 
+    #music
+    set_ambient_volume("rain", 0.4)
+    set_ambient_volume("wind", 0.5)
+    play_ambient_loop("porch", "spooky_loop.wav", volume=0.2)
+    play_sound_effect("thunder_3.wav", volume=0.6)
+
     #Room state change
     if visit_count == 0:  #Present
-        type_text("\nYou step onto the porch. The wood creaks under your weight.")
+        type_text("\nYou step onto the porch. The wood flexes under your weight.")
         type_text(f"The front door stands closed before you. A dim {YELLOW}light{RESET} flickering inside.")
 
     elif visit_count == 1:  #Past
@@ -114,22 +117,27 @@ def locked_door_interaction():
         return
 
     type_text("\nYou reach out and...", delay=0.03)
-    time.sleep(1)
+    time.sleep(1.0)
     print()
+    play_sound_effect("door_knock.wav", volume=1.0)
     print(f"{DIM_WHITE}*THUMP*{RESET}")
     time.sleep(1)
     print()
+    play_sound_effect("door_knock.wav", volume=1.0)
     print(f"{DIM_WHITE}*THUMP*{RESET}")
     time.sleep(1)
     print()
+    play_sound_effect("door_knock.wav", volume=1.0)
     print(f"{DIM_WHITE}*THUMP*{RESET}")
     time.sleep(2)
     type_text("\nThere’s no response, Just silence...")
     time.sleep(2)
     type_text("\nYou grip the handle and turn. It won’t budge, locked tight")
     time.sleep(2)
-    slow_dotted_text("\nThen suddenly")
-    type_text(f"\n{RED}CREEEEEAAAAK......{RESET}", delay=0.5)
+    type_text("\nThen suddenly...")
+    play_sound_effect("door_creak.wav", volume=0.8)
+    time.sleep(.5)
+    type_text(f"\n{RED}CREEEEEAAAAK......{RESET}")
     time.sleep(1)
     type_text(f"\n{DIM_WHITE}The door slowly swings open on its own...{RESET}")
     time.sleep(1)
@@ -142,7 +150,8 @@ def locked_door_interaction():
 #Enter house
 def enter_house():
     type_text("\nYou take a moment to prepare yourself and then you cross the threshold...")
-    time.sleep(2)
+    play_sound_effect("door_slam.wav", volume=0.9)
+    time.sleep(.25)
     print(RED + ascii_art["slam"] + RESET)
     time.sleep(1.5)
     type_text(f"\n{YELLOW}The door slams shut behind you{RESET}.")

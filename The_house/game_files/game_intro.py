@@ -8,12 +8,9 @@ import time
 import random
 from color_scheme import RED, BRIGHT_RED, GREEN, BRIGHT_GREEN, BLUE, BRIGHT_BLUE, YELLOW, BRIGHT_YELLOW, CYAN, BRIGHT_CYAN, MAGENTA, BRIGHT_MAGENTA, WHITE, DIM_WHITE, RESET
 import random
-
-#======================================================================
-
-#Internal imports
 from text_effects import type_text, slow_drip, rain_drip  # Import text effects
 from ascii_art import ascii_art  # Import ASCII art dictionary
+from sound_manager import play_music, stop_music, play_ambient_loop, stop_ambient_loop, play_sound_effect, set_ambient_volume
 
 #======================================================================
 
@@ -37,7 +34,10 @@ def colorize_rain(rain_art):
 
 #Create game intro function - leading to car/first room
 def game_intro():
-    #Repeating rain effect
+    # Start layered sounds
+    play_ambient_loop("rain", "rain_loop.wav", volume=0.2) #loop in rain sound
+
+    #Repeating rain drop text effect
     rain_drip()
     time.sleep(0.5)
 
@@ -51,36 +51,43 @@ def game_intro():
     type_text(f"\n{RED}Pain...{RESET}", delay=0.15)
     time.sleep(0.8)
 
-    # Stage 4: Regain clarity – normal pacing resumes
-    type_text("""
-A dull ache throbs in your head. Stiffness in your neck. Something… something must have happened.
-Slowly, the fog in your mind begins to lift.  
+    #intro dialogue
+    type_text("\nA dull ache throbs in your head. Stiffness in your neck. Something… something must have happened.")
+    type_text("Slowly, the fog in your mind begins to lift.\n")
 
-Rain. You hear it clearly now, hammering against the windshield.  
-The wind howls through cracks, a chilling whisper you can’t quite make out, echoing from the dark.  
+    set_ambient_volume("rain", 0.7)
+    type_text("Rain. You hear it clearly now, hammering against the windshield.")
+    type_text("The wind howls through cracks, a chilling whisper you can’t quite make out, echoing from the dark.\n")
 
-The car… You try to start it, but it won’t turn over…  
+    play_sound_effect("engine_fail.wav", volume=0.8)
+    time.sleep(1.8)
+    type_text("The car… You try to start it, but it won’t turn over…")
+    time.sleep(2)
 
-Your fingers tighten around the steering wheel as the haze fades.  
-You must have lost control. Maybe the roads were too slick…  
+    type_text("Your fingers tighten around the steering wheel as the haze fades.")
+    type_text("You must have lost control. Maybe the roads were too slick…\n")
 
-For now, your car is half-buried in a ditch, the engine dead.  
-Headlights barely cut through the storm as the radio blares static on every station…  
+    type_text("For now, your car is half-buried in a ditch, the engine dead.")
+    play_sound_effect("radio_static.wav", volume=0.6)
+    time.sleep(1.5)
+    type_text("Headlights barely cut through the storm as the radio blares static on every station…")
+    time.sleep(2)
 
-You reach for your phone. The screen flickers to life, but there’s no signal…  
-Nothing visible but the storm and darkness for miles around…  
+    type_text("\nYou reach for your phone. The screen flickers to life, but there’s no signal…")
+    type_text("Nothing visible but the storm and darkness for miles around…\n")
 
-But wait… Through the downpour, just barely brighter than a shadow… you see it.  
-A house in the distance… with a single, flickering light from within.  
+    type_text("But wait… Through the downpour, just barely brighter than a shadow… you see it.")
+    type_text(f"You see it in the distance, {RED}the house{RESET} with a single, flickering light from within.")
+    play_sound_effect("thunder_1.wav", volume=0.6)
+    time.sleep(1.5)
 
-You could stay put and wait for the storm to pass.  
-But it doesn’t look like it will let up anytime soon…  
+    type_text("\nYou could stay put and wait for the storm to pass.")
+    type_text("But it doesn’t look like it will let up anytime soon…\n")
 
-Something about that house draws you in, its faint {YELLOW}light{RESET} calling to you through the rain.  
-Maybe there’s someone inside who can help… or a phone to call for help.  
+    type_text(f"Something about that house draws you in, its faint {YELLOW}light{RESET} calling to you through the rain.")
+    type_text("Maybe there’s someone inside who can help… or a phone to call for help.\n")
 
-Or perhaps, through some twist of fate, you were always meant to find this place.  
-""")
+    type_text("Or perhaps, through some twist of fate, you were always meant to find this place.")
 
 #Show storm ASCII art - appears before user input for enter in main.py
     for line in ascii_art["storm"].strip("\n").splitlines(): #strips away the blank line after the print

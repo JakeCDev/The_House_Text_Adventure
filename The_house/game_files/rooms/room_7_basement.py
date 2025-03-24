@@ -11,19 +11,22 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
 #Basement function
 
 def room_7_basement():
+
     #Room tracker
     room_name = "room_7_basement"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    stop_ambient_loop("house", fade_out=1000)
+    play_ambient_loop("ghost", "ghost_whisper.wav", 0.6)
+    play_ambient_loop("drip", "drip_sound.wav", 0.6)
 
     #Room state change
     if visit_count == 0:  #Present
@@ -81,6 +84,7 @@ def room_7_basement():
 
         elif choice == "3":
             game_states.room_visits[room_name] += 1
+            play_sound_effect("stair_sound.wav")
             visit_room("room_6_kitchen")
 
         elif choice == "4":

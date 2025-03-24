@@ -11,10 +11,7 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import play_ambient_loop, stop_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
@@ -37,6 +34,10 @@ def room_13_attic():
     #Room tracker
     room_name = "room_13_attic"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    stop_ambient_loop("house", fade_out=1000)
+    play_ambient_loop("ominous", "ominous_loop.wav", 0.6)
 
     #Room state change
     if visit_count == 0:  #Present
@@ -99,6 +100,7 @@ def room_13_attic():
 def look_around_attic():
     #If the lockbox hasn't been picked up yet
     if "Locked Box" not in game_states.inventory:
+        play_sound_effect("thunder_3.wav", volume=0.6)
         type_text("\nThe attic is filled with old boxes, furniture, and forgotten relics.")
         type_text(f"\nAmong them, one catches your eye... a small, {MAGENTA}rusted lockbox{RESET}.")
         type_text("\nYou carefully pick it up. It's heavy, the lid fused shut with rust.")

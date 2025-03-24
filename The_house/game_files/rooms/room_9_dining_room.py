@@ -11,10 +11,7 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
@@ -42,9 +39,14 @@ def colorized_plates():
 #Dining room function
 
 def room_9_dining_room():
+
     #Room tracker
     room_name = "room_9_dining_room"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    stop_ambient_loop("vintage", fade_out=1000)
+    play_ambient_loop("house", "house_loop.wav", 0.6)
 
     #Room state change
     if visit_count == 0:  #Present
@@ -102,6 +104,7 @@ def room_9_dining_room():
 
         elif choice == "5":
             game_states.room_visits[room_name] += 1
+            play_sound_effect("stair_sound.wav")
             visit_room("room_10_upstairs_hallway")
 
         elif choice == "6":

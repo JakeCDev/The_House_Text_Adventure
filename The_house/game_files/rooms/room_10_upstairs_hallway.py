@@ -11,10 +11,7 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BRIGHT_CYAN, BRIGHT_MAGENTA, BLUE, BRIGHT_BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
@@ -46,9 +43,14 @@ def colorize_vase():
 #Upstairs hallway function
 
 def room_10_upstairs_hallway():
+
     #Room tracker
     room_name = "room_10_upstairs_hallway"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    stop_ambient_loop("music_box", fade_out=1000)
+    play_ambient_loop("house", "house_loop.wav", 0.6)
 
     #Room state changes
     if visit_count == 0:  #Present
@@ -114,6 +116,7 @@ def room_10_upstairs_hallway():
 
         elif choice == "5":
             game_states.room_visits[room_name] += 1
+            play_sound_effect("stair_sound.wav")
             visit_room("room_9_dining_room")
 
         elif choice == "6":

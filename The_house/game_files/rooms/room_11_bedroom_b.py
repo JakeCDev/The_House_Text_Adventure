@@ -11,11 +11,9 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import play_ambient_loop, stop_ambient_loop, play_sound_effect
 import random
+import time
 
 #======================================================================
 #Bedroom B function
@@ -108,6 +106,10 @@ def look_around_bedroom_b():
 
         elif choice == "3":
             if "Safe Order Hint" not in game_states.inventory:
+                stop_ambient_loop("house", fade_out=1000)
+                time.sleep(1)
+                play_ambient_loop("music_box", "music_box.wav", 0.6)
+                time.sleep(6)
                 type_text("\nOn the desk, a music box begins to play on its own... Next to it sits an old note under a layer of dust. It reads:")
                 type_text("\n\"First, down below, where there was no sight,")
                 type_text("\nThen at the table, in flickering light,")

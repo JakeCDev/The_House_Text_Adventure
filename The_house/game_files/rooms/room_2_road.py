@@ -3,7 +3,7 @@
 #rooms/room_2_road.py
 #======================================================================
 
-#Internal imports
+#imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -11,12 +11,8 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, RED, WHITE, CYAN, BLUE, BRIGHT_BLUE, BRIGHT_CYAN, BRIGHT_YELLOW, DIM_WHITE, RESET
-
-
-#======================================================================
-
-#External imports
 import random
+from sound_manager import set_ambient_volume, play_sound_effect
 
 #======================================================================
 
@@ -44,9 +40,16 @@ def colorized_sky(sky_art):
 
 #Road function room: 2
 def room_2_road():
+
     #Room tracker
     room_name = "room_2_road"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #Increase wind and rain volume now that the player is outside the car
+    set_ambient_volume("wind", 0.9)
+    set_ambient_volume("rain", 0.9)
+
+    play_sound_effect("thunder_2.wav", volume=0.6)
 
     #Room states
     if visit_count == 0:  #Present
@@ -104,6 +107,7 @@ def room_2_road():
             input("\nPress Enter to continue.")
 
         elif choice == "3":  #Move to porch
+            play_sound_effect("thunder_3.wav", volume=0.6)
             type_text(f"\nYou move toward {RED}the house{RESET}...")
             game_states.room_visits[room_name] += 1
             visit_room("room_3_porch")

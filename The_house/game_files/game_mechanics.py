@@ -9,10 +9,7 @@ from room_loader import load_room
 from text_effects import type_text
 from ascii_art import ascii_art
 from color_scheme import GREEN, MAGENTA, CYAN, BLUE, RED, YELLOW, BRIGHT_GREEN, BRIGHT_MAGENTA, BRIGHT_CYAN, BRIGHT_BLUE, BRIGHT_RED, BRIGHT_YELLOW, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import play_ambient_loop, stop_ambient_loop, set_ambient_volume, play_sound_effect
 import random
 import time
 import string
@@ -137,6 +134,8 @@ def use_screwdriver():
     #Ensure the player has both the screwdriver and the locked box
     if "Screwdriver" in game_states.inventory and "Locked Box" in game_states.inventory:
         type_text("\nYou carefully wedge the screwdriver under the lock.")
+        play_sound_effect("lockbox_open.wav", volume=0.8)
+        time.sleep(1)
         type_text("With a sharp pop, the lock snaps open.")
 
         type_text("\nInside, you find a collection of burnt, faded papers.")
@@ -320,10 +319,12 @@ def insert_fuse():
         game_states.fuse_box[slot_index] = selected_fuse
         game_states.inventory.remove(selected_fuse)
         game_states.inventory.append(old_fuse)
+        play_sound_effect("fuse_interact.wav", volume=0.8)
         print(f"\n{YELLOW}The slot was occupied by {old_fuse}. It has been swapped out for {selected_fuse}{RESET}.")
     else:
         game_states.fuse_box[slot_index] = selected_fuse
         game_states.inventory.remove(selected_fuse)
+        play_sound_effect("fuse_interact.wav", volume=0.8)
         print(f"\n{GREEN}You insert the {selected_fuse} into slot {slot_choice}{RESET}.")
 
 #======================================================================
@@ -354,6 +355,7 @@ def remove_fuse():
     removed_fuse = game_states.fuse_box[slot_index]
     game_states.inventory.append(removed_fuse)
     game_states.fuse_box[slot_index] = "Empty"
+    play_sound_effect("fuse_interact.wav", volume=0.8)
     print(f"\n{GREEN}You remove the {removed_fuse} from slot {slot_choice} and return it to your inventory{RESET}.")
 
 #======================================================================
@@ -361,6 +363,7 @@ def remove_fuse():
 def activate_fuse_box():
     #Check if the fuse box has the correct order
     if game_states.fuse_box == ["Red Fuse", "Green Fuse", "Blue Fuse"]:
+        play_sound_effect("power_on.wav", volume=0.8)
         type_text(f"\nYou hear a satisfying {GREEN}*CLICK*{RESET} as the fuse box activates. The {YELLOW}lights{RESET} flicker back to life!")
 
         #Update game state
@@ -375,17 +378,22 @@ def activate_fuse_box():
 
         #First failure
         if game_states.incorrect_fuse_attempts == 0:
+            play_sound_effect("power_failure.wav", volume=0.8)
             type_text("\nThe fuse box hums weakly, then *buzz*... silence.")
             type_text(f"Maybe something is incorrect or {RED}missing{RESET}?")
 
         #Second failure
         elif game_states.incorrect_fuse_attempts == 1:
+            play_sound_effect("power_failure.wav", volume=0.8)
+            time.sleep(1.0)
             type_text("\nA faint spark flickers inside the panel before going dead again.")
+            play_sound_effect("creepy_laugh.wav", volume=0.8)
             type_text("You flinch. That didn’t seem right...")
             type_text(f"Something feels {RED}wrong{RESET}, the air feels heavier with a dark presence.")
 
         #Third failure
         elif game_states.incorrect_fuse_attempts == 2:  #Resets immediately on 3rd failure
+            play_sound_effect("power_failure.wav", volume=0.8)
             type_text(f"\n{RED}A loud *POP* echoes from the panel. The lights flicker and spark for a moment{RESET}.")
             type_text(f"{RED}A high pitch tone blares from behind you...{RESET}")
             type_text(f"{RED}A dark presence fills the room... Your vision fades to black...{RESET}")
@@ -425,12 +433,14 @@ def inspect_safe():
 
             #Check if input is valid 3 digits
             if not safe_code.isdigit() or len(safe_code) != 3:
+                play_sound_effect("safe_fail.wav", volume=0.8)
                 type_text(f"\n{RED}Invalid input! The passcode must be a 3-digit number{RESET}.")
                 input(f"\nPress {GREEN}Enter{RESET} to try again.")  #Invalid inputs do not increase incorrect_safe_attempts
                 continue
 
             elif safe_code == "673":  #Correct code unlocks the safe
                 if "Skeleton Key" not in game_states.inventory:
+                    play_sound_effect("safe_open.wav", volume=0.8)
                     type_text(f"\nThe safe clicks {GREEN}open{RESET}. Inside, you find an old brass {MAGENTA}Skeleton Key{RESET}.")
                     type_text(f"Perhaps it unlocks that spare room upstairs. {GREEN}(Skeleton Key obtained!){RESET}")
                     game_states.inventory.append("Skeleton Key")
@@ -444,21 +454,28 @@ def inspect_safe():
 
             else:
                 game_states.incorrect_safe_attempts += 1
+                play_sound_effect("safe_fail.wav", volume=0.8)
                 type_text(f"\n{RED}The keypad beeps... 'access denied'{RESET}.")
 
                 #Spooky warnings for wrong attempts
                 if game_states.incorrect_safe_attempts == 1:
+                    play_sound_effect("safe_fail.wav", volume=0.8)
                     type_text(f"\nA {BLUE}chill{RESET} runs down your spine...")
+
                 elif game_states.incorrect_safe_attempts == 2:
+                    play_sound_effect("safe_fail.wav", volume=0.8)
+                    time.sleep(1.0)
+                    play_sound_effect("creepy_laugh.wav", volume=0.8)
                     type_text(f"\nThe rusted safe rattles slightly. A deep, guttural sound echoes from inside the {RED}darkness{RESET}.")
 
                 #Fail condition - resets game after 3 failed attempts
                 if game_states.incorrect_safe_attempts >= 3:
+                    play_sound_effect("safe_fail.wav", volume=0.8)
                     type_text(f"\n{RED}A suffocating darkness fills the room. The air grows ice cold around you{RESET}.")
                     type_text(f"{RED}A hand not your own grips your shoulder... Your vision fades...{RESET}")
                     reset_game()
                     break
-
+                play_sound_effect("safe_fail.wav", volume=0.8)
                 input(f"\n{RED}Incorrect code{RESET}. Press {GREEN}Enter{RESET} to try again.")
 
         elif choice == "2":
@@ -572,7 +589,8 @@ def reset_game():
     safe_order_hint_found = False
 
     type_text(f"\n{MAGENTA}A strange sense of déjà vu washes over you...{RESET}")
-    time.sleep(2)
+    play_sound_effect("ghost_reset.wav", volume=0.8)
+    time.sleep(4)
 
     #manually increment count since not using normal room move
     game_states.room_visits["room_1_car"] += 1
@@ -619,7 +637,7 @@ def full_reset_game():
 def check_final_door():
     #Ensure the final door only appears after opening the Lockbox
     if "Lockbox Opened" in game_states.inventory and not game_states.final_door_appeared:
-        type_text(f"\nA {GREEN}door{RESET} you swear wasn’t there before now stands along the north wall.")
+        type_text(f"\nA {GREEN}door{RESET} you swear wasn’t there before now stands along the wall.")
         type_text(f"A warm, soft {YELLOW}light{RESET} glows from beyond it, beckoning you forward.")
         type_text("It feels... safe. Familiar, somehow.")
 

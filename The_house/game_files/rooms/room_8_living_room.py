@@ -11,19 +11,22 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
 #Living Room function
 
 def room_8_living_room():
+
+
     #Room tracker
     room_name = "room_8_living_room"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    stop_ambient_loop("house", fade_out=1000)
+    play_ambient_loop("vintage", "vintage_loop.wav", 0.6)
 
     #Room state change
     if visit_count == 0:  #Present

@@ -3,6 +3,7 @@
 #======================================================================
 
 
+
 #=====================================================================
 #Tracks the player's current room - starts with first room
 current_room = "room_1_car"
@@ -79,6 +80,7 @@ item_descriptions = {
 #Room nickname dictionary
 room_aliases = {
     "car": "room_1_car",
+    "start": "room_1_car",
     "road": "room_2_road",
     "porch": "room_3_porch",
     "entryway": "room_4_entryway",
@@ -92,13 +94,39 @@ room_aliases = {
     "upstairs hallway": "room_10_upstairs_hallway",
     "upstairs": "room_10_upstairs_hallway",
     "hallway": "room_10_upstairs_hallway",
+    "hall": "room_10_upstairs_hallway",
     "bedroom b": "room_11_bedroom_b",
     "bedroom a": "room_12_bedroom_a",
     "attic": "room_13_attic",
     "final room": "room_14_final_room",
     "final": "room_14_final_room",
-    "finale": "room_14_final_room"
+    "finale": "room_14_final_room",
+    "end": "room_14_final_room"
 }
+
+#======================================================================
+
+#room audio map
+#Tracks what background sounds should be playing for each room (used for debug syncing)
+room_sound_map = {
+    "start_menu": {"music": ("intro_music.wav", 0.4)},
+    "game_intro": {"music": ("intro_music.wav", 0.4), "ambience": {"rain": ("rain_loop.wav", 0.2)}},
+    "room_1_car": {"ambience": {"rain": ("rain_loop.wav", 0.2), "wind": ("wind_loop.wav", 0.3)}},
+    "room_2_road": {"ambience": {"rain": ("rain_loop.wav", 0.8), "wind": ("wind_loop.wav", 0.9)}},
+    "room_3_porch": {"ambience": {"spooky": ("spooky_loop.wav", 0.2), "rain": ("rain_loop.wav", 0.4), "wind": ("wind_loop.wav", 0.5)}},
+    "room_4_entryway": {"ambience": {"house": ("house_loop.wav", 0.6)}},
+    "room_5_office": {"ambience": {"house": ("house_loop.wav", 0.6), "tick": ("clock_tick.wav", 0.4)}},
+    "room_6_kitchen": {"ambience": {"house": ("house_loop.wav", 0.6)}},
+    "room_7_basement": {"ambience": {"ghost": ("ghost_whisper.wav", 0.6), "drip": ("drip_sound.wav", 0.6)}},
+    "room_8_living_room": {"ambience": {"vintage": ("vintage_loop.wav", 0.6)}},
+    "room_9_dining_room": {"ambience": {"house": ("house_loop.wav", 0.6)}},
+    "room_10_upstairs_hallway": {"ambience": {"house": ("house_loop.wav", 0.6)}},
+    "room_12_bedroom_a": {"ambience": {"house": ("house_loop.wav", 0.6)}},
+    "room_11_bedroom_b": {"ambience": {"house": ("house_loop.wav", 0.6)}},
+    "room_13_attic": {"ambience": {"ominous": ("ominous_loop.wav", 0.6)}},
+    "room_14_final_room": {"ambience": {"ethereal": ("ethereal_loop.wav", 0.6)}}
+}
+
 #======================================================================
 
 #Front door mechanics - porch/entry room shared door.

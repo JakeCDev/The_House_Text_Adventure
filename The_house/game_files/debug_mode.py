@@ -8,6 +8,7 @@ from text_effects import type_text
 import game_states
 from color_scheme import RED, GREEN, YELLOW, BLUE, CYAN, MAGENTA, BRIGHT_MAGENTA, BRIGHT_YELLOW, BRIGHT_CYAN, DIM_WHITE, RESET
 from game_mechanics import visit_room
+from sound_manager import sync_ambient_to_room, play_sound_effect
 
 #======================================================================
 
@@ -33,6 +34,7 @@ def debug_menu():
     #use end= to prevent new line
     print(f"\n{BRIGHT_YELLOW}[DEBUG MODE]{RESET} ", end='')
     colorize_rainbow_text("Bending reality please hold...", delay=0.02)
+    play_sound_effect("debug_sound.wav")
 
 #======================================================================
 
@@ -59,8 +61,16 @@ def debug_menu():
             if room_input in game_states.room_aliases:
                 room_name = game_states.room_aliases[room_input]  #Convert alias to real room name
                 print(f"\n{BRIGHT_YELLOW}[DEBUG]{RESET} {BRIGHT_MAGENTA}Teleporting to {room_input} ({room_name})...{RESET}")
+
+                #Sync ambient sounds before entering the room
+                if room_name in game_states.room_sound_map:
+                    sync_ambient_to_room(room_name, game_states.room_sound_map)
+
+                else:
+                    print(f"{BRIGHT_YELLOW}[DEBUG]{RESET} {RED}No expected ambient data found for {room_name}.{RESET}")
                 visit_room(room_name)
                 return  #Return to gameplay after teleporting
+
             else:
                 print(f"\n{BRIGHT_YELLOW}[DEBUG]{RESET} {RED}Invalid room name. Try again.{RESET}")
 

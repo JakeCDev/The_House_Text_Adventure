@@ -11,10 +11,7 @@ from start_menu import start_menu  #To return to the main menu
 from ascii_art import ascii_art
 from debug_mode import debug_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, BRIGHT_CYAN, BRIGHT_BLUE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effect
 import random
 import time
 import sys
@@ -51,9 +48,14 @@ def colorize_ending():
 
 #Final function room: 14 - The Ending
 def room_14_final_room():
+
     #Room tracker
     room_name = "room_14_final_room"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    stop_ambient_loop("house", fade_out=1000)
+    time.sleep(1)
+    play_ambient_loop("ethereal", "ethereal_loop.wav", 0.6)
 
     type_text(f"\n{DIM_WHITE}You step through the doorway. The air is warm and familiar, like you have been here before{RESET}")
     time.sleep(1)
@@ -144,6 +146,12 @@ def end_game():
 
     slow_dotted_text(f"\n{GREEN}At last{RESET}")
 
+    time.sleep(1)
+    stop_ambient_loop("ethereal", fade_out=1000)
+    time.sleep(1)
+    play_ambient_loop("credits", "credits_lofi.wav", 0.5)
+    time.sleep(1)
+
     #Display ending artwork
     colorize_ending()
 
@@ -153,10 +161,11 @@ def end_game():
     time.sleep(1)
     print(f'{RED}"The House"{RESET}')
     print(f"{BRIGHT_CYAN}By: Jake Chrissinger{RESET}")
-    time.sleep(1)
-    time.sleep(2)
+    time.sleep(10)
+
 
     input(f"\nPress {GREEN}Enter{RESET} to return to the main menu.")  #Pause before restarting
+    stop_ambient_loop("credits", fade_out=1000)
     full_reset_game()
     start_menu()  #Return to the main menu
 

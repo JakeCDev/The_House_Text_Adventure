@@ -3,7 +3,7 @@
 #start_menu.py
 #======================================================================
 
-#Internal imports
+#Import modules
 from ascii_art import ascii_art  #Import ascii art file
 from text_effects import type_text, slow_dotted_text  #Import text effect file
 from debug_mode import debug_menu  #Import debug mode
@@ -12,10 +12,7 @@ import game_intro #Import game into dialogue
 from rooms.room_1_car import room_1_car
 from save_system import load_game
 from color_scheme import RED, GREEN, CYAN, MAGENTA, YELLOW, BRIGHT_RED, BRIGHT_GREEN, BRIGHT_YELLOW, BRIGHT_CYAN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import play_music, stop_music, play_sound_effect
 import time
 import sys
 
@@ -23,6 +20,17 @@ import sys
 
 #Create start menu function
 def start_menu():
+
+    #pre-launch debug shortcut, # it out when not in use.
+    debug_choice = input(f"\n{YELLOW}(Debug shortcut){RESET} Type{YELLOW} 'debug'{RESET} to enter debug mode, or press {GREEN}Enter{RESET} to continue: ").strip().lower()
+    if debug_choice == "debug":
+        debug_menu()
+        return  #Return to prevent the rest of the menu from loading
+
+
+    #start intro/start menu music on launch
+    play_music("intro_music.wav", volume=0.4)  #Start looping intro music
+
     print(f"\n{RED}{'=' * 70}{RESET}")  #Print border line
 
     #blank line
@@ -36,6 +44,12 @@ def start_menu():
 
     #blank line
     print()
+
+    #Trigger thunder right before ascii art
+    play_sound_effect("thunder_2.wav", volume=0.8)
+
+    #delay to time with title
+    time.sleep(1.5)
 
     #game title
     print(BRIGHT_RED + ascii_art["game_title"]+ RESET)
@@ -103,4 +117,5 @@ def start_menu():
             print(RED + "\nInvalid choice. Type the " + BRIGHT_RED + "number associated with your option" + RED + " and try again." + RESET)  #Reloads if invalid choice
 
 #======================================================================
+
 

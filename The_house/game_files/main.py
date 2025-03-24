@@ -3,7 +3,7 @@
 #main.py
 #======================================================================
 
-#Import internal game modules
+#Import modules
 
 from start_menu import start_menu
 from game_mechanics import visit_room, get_player_name
@@ -11,10 +11,6 @@ from game_intro import game_intro
 import game_states  #Import game state tracker before anything else to ensure tracks properly
 from text_effects import type_text
 from color_scheme import BRIGHT_GREEN, RESET
-
-#======================================================================
-
-#External imports
 import time
 
 #======================================================================

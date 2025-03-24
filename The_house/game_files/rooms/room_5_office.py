@@ -11,19 +11,20 @@ from ascii_art import ascii_art
 from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, MAGENTA, BLUE, CYAN, RED, GREEN, DIM_WHITE, RESET
-
-#======================================================================
-
-#External imports
+from sound_manager import play_ambient_loop, stop_ambient_loop, play_sound_effect
 import random
 
 #======================================================================
 #Office room function
 
 def room_5_office():
+
     #Room tracker
     room_name = "room_5_office"
     visit_count = game_states.room_visits.get(room_name, 0)
+
+    #music
+    play_ambient_loop("tick", "clock_tick.wav", 0.4)
 
     #Room state changes
     if visit_count == 0:  #Present
@@ -71,12 +72,14 @@ def room_5_office():
             input(f"\nPress {GREEN}Enter{RESET} to continue.")
 
         elif choice == "3":
+            stop_ambient_loop("tick", fade_out=1000)
             type_text(f"\nYou walk towards the kitchen, the air growing {CYAN}colder{RESET} as you move.")
             game_states.room_visits[room_name] += 1
             visit_room("room_6_kitchen")
             break
 
         elif choice == "4":
+            stop_ambient_loop("tick", fade_out=1000)
             type_text(f"\nYou step back into the entryway, the dim {YELLOW}light{RESET} flickering above.")
             game_states.room_visits[room_name] += 1
             visit_room("room_4_entryway")
