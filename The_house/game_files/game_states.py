@@ -1,10 +1,12 @@
 #======================================================================
 #Game states - permanent status checker/trackers
+#game_states.py
 #======================================================================
 
-
+#Imports
 
 #=====================================================================
+
 #Tracks the player's current room - starts with first room
 current_room = "room_1_car"
 
@@ -107,7 +109,9 @@ room_aliases = {
 #======================================================================
 
 #room audio map
+
 #Tracks what background sounds should be playing for each room (used for debug syncing)
+
 room_sound_map = {
     "start_menu": {"music": ("intro_music.wav", 0.4)},
     "game_intro": {"music": ("intro_music.wav", 0.4), "ambience": {"rain": ("rain_loop.wav", 0.2)}},
@@ -136,8 +140,8 @@ door_disappeared = False  #Entryway front door disappears when the player leaves
 front_door_warning_shown = False  #Checks disappeared = true and if so they get alerted the door vanished when they re enter entryway first time.
 
 #======================================================================
+
 #Puzzle trackers
-#======================================================================
 
 #Fuse box
 power_restored = False  #Tracks if the fuse puzzle is completed
@@ -174,6 +178,10 @@ final_door_appeared = False  #Tracks if the final ending door has spawned
 
 #Has the player passed the point of no return?
 final_sequence_started = False
+
+#======================================================================
+
+#End
 
 #======================================================================
 

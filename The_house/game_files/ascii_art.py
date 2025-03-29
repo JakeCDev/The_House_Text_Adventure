@@ -1,22 +1,19 @@
 #======================================================================
 #Ascii art functions
 #ascii_art.py
-
+#======================================================================
 
 #ASCII Art in this game was sourced from the following websites:
-#- [ASCII Art Archive](https://www.asciiart.eu/)
-#- [FSymbols ASCII Art](https://fsymbols.com/text-art/)
-#- [ASCII Art UK](https://ascii.co.uk/)
+#[ASCII Art Archive](https://www.asciiart.eu/)
+#[FSymbols ASCII Art](https://fsymbols.com/text-art/)
+#[ASCII Art UK](https://ascii.co.uk/)
+
+#Check readme
 #All rights belong to their respective creators.
 
-
 #======================================================================
 
-#Internal imports
-
-#======================================================================
-
-#External imports
+#Imports
 import os
 
 #======================================================================
@@ -30,6 +27,7 @@ import os
 #======================================================================
 
 #Start of dictionary
+
 #Game title art
 ascii_art = {
     "game_title": """████████▓ ██░ ██ ▓█████     ██░ ██  ▒█████   █    ██   ██████ ▓█████
@@ -1275,7 +1273,7 @@ o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o o
 
 #======================================================================
 
-#ascii art list and line numbers
+#ascii art list and line numbers - run ascii art file directly
 def list_ascii_art():
     file_path = os.path.abspath(__file__)  #Get current script file path
     art_positions = {}
@@ -1285,6 +1283,7 @@ def list_ascii_art():
         with open(file_path, "r", encoding="utf-8") as file:
             lines = file.readlines()
             for i, line in enumerate(lines):
+
                 #Find start of ASCII dictionary
                 if 'ascii_art = {' in line:
                     inside_ascii_art = True
@@ -1305,9 +1304,16 @@ def list_ascii_art():
 
     return art_positions
 
+#======================================================================
+
 #runs only when ascii is the main file ran
 if __name__ == "__main__":
     print("\nAvailable ASCII Art with Line Numbers:\n")
     ascii_art_list = list_ascii_art()
     for key, line in sorted(ascii_art_list.items(), key=lambda x: x[0].lower()):#show alphabetically
         print(f"- {key} (Line {line})")
+#======================================================================
+
+#End
+
+#======================================================================

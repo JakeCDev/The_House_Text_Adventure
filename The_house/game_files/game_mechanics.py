@@ -15,10 +15,10 @@ import time
 import string
 
 #======================================================================
-#Room movement system
-#======================================================================
 
+#Room movement system
 def visit_room(room_name):
+
     #Check if alias exists and convert to actual room name
     if room_name in game_states.room_aliases:
         room_name = game_states.room_aliases[room_name]
@@ -44,8 +44,7 @@ def visit_room(room_name):
 
 #======================================================================
 
-#======================================================================
-
+#wait responses - randomly called
 universal_wait_responses = [
     "The silence stretches on...",
     "A soft creaking noise echoes through the space... It stops the moment you focus on it.",
@@ -69,13 +68,9 @@ def universal_wait():
     print()
     print(f"{MAGENTA}{random.choice(universal_wait_responses)}{RESET}")
 
-
 #======================================================================
 
-#======================================================================
 #Inventory check system
-#======================================================================
-
 def check_inventory(current_room_function):
     if not game_states.inventory:
         print(f"\n{YELLOW}Your inventory is empty{RESET}.")
@@ -121,10 +116,7 @@ def check_inventory(current_room_function):
 
 #======================================================================
 
-#======================================================================
 #Screwdriver mechanics
-#======================================================================
-
 def use_screwdriver():
     #Prevent using the screwdriver if the lockbox is already opened
     if "Lockbox Opened" in game_states.inventory:
@@ -156,9 +148,8 @@ def use_screwdriver():
         type_text(f"\n{YELLOW}You have nothing to use the screwdriver on{RESET}.")
 
 #======================================================================
-#Front door mechanics
-#======================================================================
 
+#Front door mechanics
 #When player checks door from inside - door choice disappears
 def check_front_door():
     #If the door has disappeared, warn the player
@@ -196,10 +187,7 @@ def check_entryway_for_door():
 
 #======================================================================
 
-#======================================================================
 #Fuse box and darkness systems
-#======================================================================
-
 def check_fuse_box():
 
     #prevent circular import loop
@@ -263,6 +251,7 @@ def check_fuse_box():
 
 #======================================================================
 
+#fuse insert
 def insert_fuse():
     #Get available fuses in inventory
     available_fuses = [f for f in game_states.inventory if "fuse" in f.lower()]
@@ -329,6 +318,7 @@ def insert_fuse():
 
 #======================================================================
 
+#fuse removal
 def remove_fuse():
     print(f"\n{GREEN}Current fuse slots:{RESET}")
     for i in range(3):
@@ -360,6 +350,7 @@ def remove_fuse():
 
 #======================================================================
 
+#fuse box mechanics - attempting to restore power
 def activate_fuse_box():
     #Check if the fuse box has the correct order
     if game_states.fuse_box == ["Red Fuse", "Green Fuse", "Blue Fuse"]:
@@ -372,7 +363,6 @@ def activate_fuse_box():
         input(f"\nPress {GREEN}Enter{RESET} to return.")
         visit_room("room_4_entryway")  #Send player back to the Entryway
         return True  #Exit immediately
-
 
     else:
 
@@ -412,10 +402,9 @@ def activate_fuse_box():
 
 #======================================================================
 
-#======================================================================
 #Safe puzzle
-#======================================================================
 
+#basement safe function
 def inspect_safe():
     type_text(f"\nThe safe is old and rusted. A {GREEN}3-digit keypad{RESET} is built into the front.")
     type_text(f"There must be {YELLOW}hints{RESET} somewhere...")
@@ -452,17 +441,15 @@ def inspect_safe():
                 visit_room("room_7_basement")  #Move to basement after unlocking the safe
                 break
 
-
-
             else:
-                # Incorrect code
+                #Incorrect code
                 game_states.incorrect_safe_attempts += 1
 
-                # First fail beep
+                #First fail beep
                 play_sound_effect("safe_fail.wav", volume=0.8)
                 type_text(f"\n{RED}The keypad beeps... 'access denied'{RESET}.")
 
-                # Second fail beep + spooky effects
+                #Second fail beep + spooky effects
                 if game_states.incorrect_safe_attempts == 1:
                     play_sound_effect("safe_fail.wav", volume=0.8)
                     type_text(f"\nA {BLUE}chill{RESET} runs down your spine...")
@@ -567,11 +554,11 @@ def distort_name(player_name, stage):
         return ''.join(distorted_name)
 
     else:
-        return player_name  # Default to original name if stage is not valid
+        return player_name  #Default to original name if stage is not valid
 
 #======================================================================
+
 #Reset mechanic
-#======================================================================
 
 #for failed mechanic reset
 def reset_game():
@@ -608,6 +595,7 @@ def reset_game():
 
     #send back to car
     visit_room("room_1_car")
+
 #======================================================================
 
 #total reset
@@ -647,10 +635,9 @@ def full_reset_game():
 
     type_text(f"\n{MAGENTA}Everything fades... and when you open your eyes, it is as if nothing ever happened{RESET}.")
 
+#======================================================================
 
-#======================================================================
 #Final/ending door mechanic
-#======================================================================
 def check_final_door():
     #Ensure the final door only appears after opening the Lockbox
     if "Lockbox Opened" in game_states.inventory and not game_states.final_door_appeared:
@@ -659,5 +646,10 @@ def check_final_door():
         type_text("It feels... safe. Familiar, somehow.")
 
         game_states.final_door_appeared = True
+
+#======================================================================
+
+#End
+
 #======================================================================
 

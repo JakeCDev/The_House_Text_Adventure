@@ -123,7 +123,8 @@ def room_14_final_room():
             time.sleep(1)
 
 #======================================================================
-#End game function
+
+#End game function - outro
 def end_game():
     type_text(f"\nYou step forward as the {YELLOW}light{RESET} engulfs you.")
     type_text("The weight you've carried lifts, and the fear fades.")
@@ -146,6 +147,9 @@ def end_game():
 
     slow_dotted_text(f"\n{GREEN}At last{RESET}")
 
+#======================================================================
+
+    #credits
     time.sleep(1)
     stop_ambient_loop("ethereal", fade_out=1000)
     time.sleep(1)
@@ -168,5 +172,9 @@ def end_game():
     stop_ambient_loop("credits", fade_out=1000)
     full_reset_game()
     start_menu()  #Return to the main menu
+
+#======================================================================
+
+#End
 
 #======================================================================

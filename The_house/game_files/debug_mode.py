@@ -3,16 +3,12 @@
 #debug_mode.py
 #======================================================================
 
-#Internal imports
+#Imports
 from text_effects import type_text
 import game_states
 from color_scheme import RED, GREEN, YELLOW, BLUE, CYAN, MAGENTA, BRIGHT_MAGENTA, BRIGHT_YELLOW, BRIGHT_CYAN, DIM_WHITE, RESET
 from game_mechanics import visit_room
 from sound_manager import sync_ambient_to_room, play_sound_effect
-
-#======================================================================
-
-#External imports
 import time
 import random
 
@@ -25,7 +21,7 @@ def colorize_rainbow_text(text, delay=0.01):
         color = random.choice(colors)
         print(f"{color}{char}{RESET}", end='', flush=True)
         time.sleep(delay)
-    print()  # Finish with newline
+    print()  #Finish with new line
 
 #======================================================================
 
@@ -38,7 +34,7 @@ def debug_menu():
 
 #======================================================================
 
-    #dot effect
+    #slow dot "loading" effect
     for _ in range(1):
         for _ in range(3):  #Print 3 dots with delays
             print(".", end=" ", flush=True)  #Print dot without newline
@@ -139,7 +135,9 @@ def debug_menu():
             print("  - reset attempts        → Reset fuse/safe incorrect attempts.")
             print("  - reset fuse            → Reset the fuse box.")
             print(f"  - {RED}exit{RESET}                  → {RED}Leave debug mode{RESET}.")
+
 #======================================================================
+
         #Check game states
         elif command == "check states":
             print(f"\n{BRIGHT_YELLOW}[DEBUG]{RESET} {GREEN}Permanent Game States:{RESET}")
@@ -159,8 +157,11 @@ def debug_menu():
             print(f"  Incorrect Fuse Attempts: {YELLOW}{game_states.incorrect_fuse_attempts}{RESET}")
             print(f"  Incorrect Safe Attempts: {YELLOW}{game_states.incorrect_safe_attempts}{RESET}")
             print(f"  Fuse Box State: {CYAN}{game_states.fuse_box}{RESET}")
+
 #======================================================================
+
         #toggle states
+
         #Toggle power restored (for testing kitchen drawer)
         elif command == "toggle power":
             game_states.power_restored = not game_states.power_restored
@@ -192,7 +193,7 @@ def debug_menu():
 
 #======================================================================
 
-            # List all available items
+            #List all available items
         elif command == "list items":
             print(f"\n{BRIGHT_YELLOW}[DEBUG]{RESET} {GREEN}Available Items:{RESET}")
             for item in game_states.item_descriptions.keys():
@@ -207,3 +208,9 @@ def debug_menu():
 
         else:
             print(f"\n{BRIGHT_YELLOW}[DEBUG]{RESET} {RED}Invalid command{RESET}. Type '{GREEN}help{RESET}' {RED}for a list of debug commands.{RESET}")
+
+#======================================================================
+
+#End
+
+#======================================================================

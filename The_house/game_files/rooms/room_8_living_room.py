@@ -3,7 +3,7 @@
 #room_8_living_room.py
 #======================================================================
 
-# Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -15,10 +15,9 @@ from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effec
 import random
 
 #======================================================================
+
 #Living Room function
-
 def room_8_living_room():
-
 
     #Room tracker
     room_name = "room_8_living_room"
@@ -55,6 +54,7 @@ def room_8_living_room():
     print(ascii_art["living_room"])
 
 #======================================================================
+
     #Living room choices
     while True:
         print("\nWhat do you want to do?")
@@ -94,8 +94,8 @@ def room_8_living_room():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking Around Living Room
 
+#Looking Around Living Room
 def look_around_living_room():
     while True:
         type_text("\nYou scan the living room. What do you want to check?")
@@ -136,5 +136,9 @@ def look_around_living_room():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

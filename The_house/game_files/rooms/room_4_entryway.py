@@ -3,7 +3,7 @@
 #room_4_entryway.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_front_door, check_entryway_for_door, check_inventory, check_fuse_box, universal_wait
 from text_effects import type_text
@@ -17,7 +17,6 @@ import random
 #======================================================================
 
 #colorize for red fuse def before the room to prevent circular imports / keep ascii dictionary clean
-
 def colorize_red_fuse():
     fuse_art = ascii_art["red_fuse"]
 
@@ -25,9 +24,10 @@ def colorize_red_fuse():
         if "RED" in line:
             line = line.replace("RED", f"{RED}RED{RESET}")
         print(line)
-#======================================================================
-#Entryway function room: 4
 
+#======================================================================
+
+#Entryway function room: 4
 def room_4_entryway():
 
     #Room tracker
@@ -72,6 +72,7 @@ def room_4_entryway():
     play_sound_effect("thunder_2.wav", volume=0.4)
 
 #======================================================================
+
 #Entryway choices
     while True:
         print("\nWhat do you want to do?")
@@ -125,8 +126,8 @@ def room_4_entryway():
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================
-#Look around entryway
 
+#Look around entryway
 def look_around_entryway():
     while True:
         type_text("\nYou scan the dim entryway. What do you want to examine?")
@@ -167,5 +168,10 @@ def look_around_entryway():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
+
 #======================================================================
 

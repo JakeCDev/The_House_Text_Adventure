@@ -3,7 +3,7 @@
 #room_5_office.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -15,8 +15,8 @@ from sound_manager import play_ambient_loop, stop_ambient_loop, play_sound_effec
 import random
 
 #======================================================================
-#Office room function
 
+#Office room function
 def room_5_office():
 
     #Room tracker
@@ -53,6 +53,7 @@ def room_5_office():
     print(ascii_art["office"])
 
 #======================================================================
+
 #Office choices
     while True:
         print("\nWhat do you want to do?")
@@ -98,8 +99,8 @@ def room_5_office():
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================
-#Look around office
 
+#Look around office
 def look_around_office():
     while True:
         type_text("\nYou scan the office. What do you want to examine?")
@@ -143,5 +144,9 @@ def look_around_office():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

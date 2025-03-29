@@ -3,7 +3,7 @@
 #room_13_attic.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -28,8 +28,8 @@ def colorized_moon():
             print(char, end="")
 
 #======================================================================
-#Attic function room: 13
 
+#Attic function room: 13
 def room_13_attic():
     #Room tracker
     room_name = "room_13_attic"
@@ -61,6 +61,7 @@ def room_13_attic():
     print(ascii_art["ladder"])
 
 #======================================================================
+
     #Attic choices
     while True:
         print("\nWhat do you want to do?")
@@ -86,7 +87,7 @@ def room_13_attic():
             check_inventory(room_13_attic)
 
         elif choice == "debug":
-            debug_menu()  # Calls the debug menu
+            debug_menu()  #Calls the debug menu
 
         elif choice == "pause":
             pause_menu()
@@ -95,8 +96,8 @@ def room_13_attic():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around the attic
 
+#Looking around the attic
 def look_around_attic():
     #If the lockbox hasn't been picked up yet
     if "Locked Box" not in game_states.inventory:
@@ -116,5 +117,9 @@ def look_around_attic():
         colorized_moon()
 
     input(f"\nPress {GREEN}Enter{RESET} to continue.")
+
+#======================================================================
+
+#End
 
 #======================================================================

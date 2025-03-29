@@ -3,7 +3,7 @@
 # pause_menu.py
 #======================================================================
 
-# Internal imports
+#Imports
 from save_system import save_game, load_game
 from game_mechanics import visit_room
 from debug_mode import debug_menu
@@ -12,12 +12,7 @@ from color_scheme import GREEN, RED, YELLOW, CYAN, MAGENTA, RESET
 
 #======================================================================
 
-# External imports
-# (None needed right now)
-
-#======================================================================
-
-# pause menu function
+#pause menu function
 def pause_menu():
     while True:
         print("\n[PAUSED] What would you like to do?")
@@ -66,3 +61,9 @@ def pause_menu():
 
         else:
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
+
+#======================================================================
+
+#End
+
+#======================================================================

@@ -3,7 +3,7 @@
 #room_6_kitchen.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -27,7 +27,6 @@ def colorize_blue_fuse():
 #======================================================================
 
 #Kitchen function
-
 def room_6_kitchen():
 
     # Room tracker
@@ -71,6 +70,7 @@ def room_6_kitchen():
     print(ascii_art["kitchen"])
 
 #======================================================================
+
     #Kitchen choices
     while True:
         print("\nWhat do you want to do?")
@@ -131,8 +131,8 @@ def room_6_kitchen():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around the kitchen
 
+#Looking around the kitchen
 def look_around_kitchen():
     while True:
         type_text("\nYou scan the kitchen. What do you want to check?")
@@ -180,4 +180,9 @@ def look_around_kitchen():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
+
 #======================================================================

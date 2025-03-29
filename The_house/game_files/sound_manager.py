@@ -48,6 +48,7 @@ def play_music(filename, volume=0.5, fade_in=1000):
 
 #======================================================================
 
+#force stop music with fade out
 def stop_music(fade_out=1000):
     pygame.mixer.music.fadeout(fade_out)  #Fade out music over X ms
 
@@ -62,7 +63,7 @@ def play_sound_effect(filename, volume=1.0):
 
 #======================================================================
 
-#Ambient Loops (ex - rain, wind, creepy hum)
+#Ambient Loops (ex - rain / wind)
 def play_ambient_loop(name, filename, volume=0.6):
     #If the sound is already playing on a valid channel, don't restart it
     if name in looping_channels:
@@ -83,6 +84,7 @@ def play_ambient_loop(name, filename, volume=0.6):
 
 #======================================================================
 
+#change ambient volumes
 def set_ambient_volume(name, volume):
     if name in looping_channels:
         looping_channels[name].set_volume(volume)
@@ -91,6 +93,7 @@ def set_ambient_volume(name, volume):
 
 #======================================================================
 
+#force stop a loop
 def stop_ambient_loop(name, fade_out=1000):
     if name in looping_channels:
         looping_channels[name].fadeout(fade_out)
@@ -108,26 +111,30 @@ def stop_all_ambient():
 #sound fix for debug teleporting
 def sync_ambient_to_room(room_name, sound_map):
     import pygame
-    from game_states import room_sound_map  # Local import to avoid circular import
+    from game_states import room_sound_map  #Local import to avoid circular import
 
-    # Stop current music
+    #Stop current music
     pygame.mixer.music.stop()
 
-    # Stop all ambient loops using the helper
+    #Stop all ambient loops using the helper
     stop_all_ambient()
 
-    # Get sound config for the target room
+    #Get sound config for the target room
     room_sounds = room_sound_map.get(room_name, {})
 
-    # Start new music if defined
+    #Start new music if defined
     music_data = room_sounds.get("music")
     if music_data:
         music_file, music_volume = music_data
         play_music(music_file, volume=music_volume)
 
-    # Start defined ambient loops
+    #Start defined ambient loops
     ambient_loops = room_sounds.get("ambience", {})
     for name, (file, volume) in ambient_loops.items():
         play_ambient_loop(name, file, volume)
+
+#======================================================================
+
+#End
 
 #======================================================================

@@ -21,12 +21,20 @@ import sys
 #Create start menu function
 def start_menu():
 
+#======================================================================
+#======================================================================
+#======================================================================
+
     #SPECIAL DEBUG MODE, remove the #'s when debugging! Do not forget to replace before uploading game code.
     debug_choice = input(f"\n{YELLOW}(Debug shortcut){RESET} Type{YELLOW} 'debug'{RESET} to enter debug mode, or press {GREEN}Enter{RESET} to continue: ").strip().lower()
     if debug_choice == "debug":
         debug_menu()
         return  #Return to prevent the rest of the menu from loading
     #SPECIAL DEBUG MODE, remove the #'s when debugging! Do not forget to replace before uploading game code.
+
+#======================================================================
+#======================================================================
+#======================================================================
 
     #start intro/start menu music on launch
     play_music("intro_music.wav", volume=0.4)  #Start looping intro music
@@ -76,6 +84,7 @@ def start_menu():
     time.sleep(1)
     type_text(f"\n• Type '{YELLOW}pause{RESET}' at any time in the game menus to open the pause menu. From there, you can {GREEN}save{RESET}, {CYAN}load{RESET}, or {RED}exit{RESET}.")
     time.sleep(2)
+
 #======================================================================
 
     #Give begin, load, and exit chocies
@@ -115,6 +124,10 @@ def start_menu():
 
         else:
             print(RED + "\nInvalid choice. Type the " + BRIGHT_RED + "number associated with your option" + RED + " and try again." + RESET)  #Reloads if invalid choice
+
+#======================================================================
+
+#End
 
 #======================================================================
 

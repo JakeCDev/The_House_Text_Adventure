@@ -3,7 +3,7 @@
 #room_11_bedroom_b.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -16,8 +16,8 @@ import random
 import time
 
 #======================================================================
-#Bedroom B function
 
+#Bedroom B function
 def room_11_bedroom_b():
     #Room tracker
     room_name = "room_11_bedroom_b"
@@ -50,6 +50,7 @@ def room_11_bedroom_b():
     print(ascii_art["bedroom_b"])
 
 #======================================================================
+
     #Bedroom B choices
     while True:
         print("\nWhat do you want to do?")
@@ -84,8 +85,8 @@ def room_11_bedroom_b():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around in Bedroom B
 
+#Looking around in Bedroom B
 def look_around_bedroom_b():
     while True:
         type_text("\nYou scan the bedroom. What do you want to check?")
@@ -131,5 +132,9 @@ def look_around_bedroom_b():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

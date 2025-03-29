@@ -3,7 +3,7 @@
 #room_12_bedroom_a.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -15,8 +15,8 @@ from sound_manager import play_ambient_loop, stop_ambient_loop, play_sound_effec
 import random
 
 #======================================================================
-#Bedroom A function
 
+#Bedroom A function
 def room_12_bedroom_a():
 
     #Room tracker
@@ -54,6 +54,7 @@ def room_12_bedroom_a():
     print(ascii_art["bedroom_a"])
 
 #======================================================================
+
     #Bedroom A choices
     while True:
         print("\nWhat do you want to do?")
@@ -93,8 +94,8 @@ def room_12_bedroom_a():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around in Bedroom A
 
+#Looking around in Bedroom A
 def look_around_bedroom_a():
     while True:
         type_text("\nYou scan the bedroom. What do you want to check?")
@@ -136,5 +137,9 @@ def look_around_bedroom_a():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

@@ -73,6 +73,7 @@ def room_2_road():
         type_text("The trees have become a surreal dream, their trunks twist in all directions, their leaves glisten like glass...")
 
 #======================================================================
+
     #Road art
     def print_colored_road(road_art):
         for line in road_art.strip("\n").splitlines():
@@ -126,6 +127,7 @@ def room_2_road():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
+
 #Look around road
 def look_around_road():
     while True:
@@ -162,3 +164,9 @@ def look_around_road():
 
         else:
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
+
+#======================================================================
+
+#End
+
+#======================================================================

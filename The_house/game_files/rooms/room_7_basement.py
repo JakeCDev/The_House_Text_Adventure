@@ -3,7 +3,7 @@
 #room_7_basement.py
 #======================================================================
 
-# Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, inspect_safe, universal_wait
 from text_effects import type_text
@@ -15,8 +15,8 @@ from sound_manager import stop_ambient_loop, play_ambient_loop, play_sound_effec
 import random
 
 #======================================================================
-#Basement function
 
+#Basement function
 def room_7_basement():
 
     #Room tracker
@@ -59,6 +59,7 @@ def room_7_basement():
     print(ascii_art["basement"])
 
 #======================================================================
+
     #Basement choices
     while True:
         print("\nWhat do you want to do?")
@@ -106,8 +107,8 @@ def room_7_basement():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around the basement
 
+#Looking around the basement
 def look_around_basement():
     while True:
         type_text("\nYou scan the basement. What do you want to check?")
@@ -152,5 +153,9 @@ def look_around_basement():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

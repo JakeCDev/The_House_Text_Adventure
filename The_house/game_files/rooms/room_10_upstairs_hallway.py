@@ -3,7 +3,7 @@
 #room_10_upstairs_hallway.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -17,7 +17,6 @@ import random
 #======================================================================
 
 #colorize for red fuse def before the room to prevent circular imports / keep ascii dictionary clean
-
 def colorize_green_fuse():
     fuse_art = ascii_art["green_fuse"]
 
@@ -38,10 +37,10 @@ def colorize_vase():
             print(f"{random.choice(colors)}@{RESET}", end="")
         else:
             print(char, end="")
+
 #======================================================================
 
 #Upstairs hallway function
-
 def room_10_upstairs_hallway():
 
     #Room tracker
@@ -79,6 +78,7 @@ def room_10_upstairs_hallway():
     print(ascii_art["stairs"])
 
 #======================================================================
+
     #Upstairs hallway choices
     while True:
         print("\nWhat do you want to do?")
@@ -132,8 +132,8 @@ def room_10_upstairs_hallway():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around the upstairs hallway
 
+#Looking around the upstairs hallway
 def look_around_upstairs_hallway():
     while True:
         type_text("\nYou scan the upstairs hallway. What do you want to check?")
@@ -172,5 +172,9 @@ def look_around_upstairs_hallway():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

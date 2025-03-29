@@ -3,7 +3,7 @@
 #rooms/room_1_car.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -12,14 +12,10 @@ from debug_mode import debug_menu
 from pause_menu import pause_menu
 from color_scheme import YELLOW, BLUE, RED, DIM_WHITE, RESET
 from sound_manager import stop_music, play_ambient_loop, play_sound_effect
-
-#======================================================================
-
-#External imports
 import random
 
-
 #======================================================================
+
 #Car function room: 1
 def room_1_car():
 
@@ -62,6 +58,7 @@ def room_1_car():
         type_text(f"The {BLUE}rain{RESET} falls in slow motion... The road stretches on forever in both directions as far as you can see...")
 
 #======================================================================
+
     #Car art
     print(ascii_art["car"])
 
@@ -105,6 +102,7 @@ def room_1_car():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
+
 #Looking around the car
 def look_around_car():
     while True:
@@ -134,5 +132,9 @@ def look_around_car():
 
         else:
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
+
+#======================================================================
+
+#End
 
 #======================================================================

@@ -3,13 +3,9 @@
 #Room.loader.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from color_scheme import RED
-
-#======================================================================
-
-#External imports
 import importlib
 
 #======================================================================
@@ -22,5 +18,9 @@ def load_room(room_name):
     except (ModuleNotFoundError, AttributeError):
         print(f"\n{RED}ERROR: Room '{room_name}' does not exist.{RESET}")
         return None
+
+#======================================================================
+
+#End
 
 #======================================================================

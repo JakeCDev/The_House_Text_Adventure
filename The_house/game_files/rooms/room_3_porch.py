@@ -3,7 +3,7 @@
 #room_3_porch.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text, slow_dotted_text
@@ -30,8 +30,8 @@ def colorized_porch():
 
 
 #======================================================================
-#Porch function room: 3
 
+#Porch function room: 3
 def room_3_porch():
     #Room tracker
     room_name = "room_3_porch"
@@ -68,6 +68,7 @@ def room_3_porch():
     colorized_porch()
 
 #======================================================================
+
     #Porch choices
     while True:
         print("\nWhat do you want to do?")
@@ -101,7 +102,7 @@ def room_3_porch():
             check_inventory(room_3_porch)
 
         elif choice == "debug":
-            debug_menu()  # Calls the debug menu
+            debug_menu()  #Calls the debug menu
 
         elif choice == "pause":
             pause_menu()
@@ -110,6 +111,7 @@ def room_3_porch():
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
 
 #======================================================================
+
 #Door lock function
 def locked_door_interaction():
     if game_states.door_checked:  #If they already knocked/tried the handle, do nothing
@@ -147,6 +149,7 @@ def locked_door_interaction():
     game_states.door_checked = True  #The player has tried the door at least once
 
 #======================================================================
+
 #Enter house
 def enter_house():
     type_text("\nYou take a moment to prepare yourself and then you cross the threshold...")
@@ -161,6 +164,7 @@ def enter_house():
     visit_room("room_4_entryway")  #Move the player into the house
 
 #======================================================================
+
 #Look Around the porch
 def look_around_porch():
     while True:
@@ -209,5 +213,9 @@ def look_around_porch():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

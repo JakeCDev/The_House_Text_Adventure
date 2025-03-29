@@ -3,18 +3,13 @@
 #save_systems.py
 #======================================================================
 
-#internal imports
+#imports
 
 from text_effects import type_text
 from color_scheme import GREEN, RED, DIM_WHITE, RESET
 import game_states
 from sound_manager import stop_music, stop_all_ambient, sync_ambient_to_room
 from game_states import room_sound_map
-
-#======================================================================
-
-#external imports
-
 import json
 import os
 import time
@@ -30,8 +25,8 @@ if not os.path.exists(SAVE_DIR):
     os.makedirs(SAVE_DIR)
 
 #======================================================================
-#save game function
 
+#save game function
 def save_game():
     data = {
         #Player Info
@@ -130,5 +125,9 @@ def load_game():
     time.sleep(2)
 
     return True
+
+#======================================================================
+
+#End
 
 #======================================================================

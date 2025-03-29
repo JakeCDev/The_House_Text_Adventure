@@ -6,9 +6,6 @@
 #Internal imports
 import game_states
 from color_scheme import BLUE, RESET
-
-#=====================================================================
-#Outer imports
 import time
 import sys
 import os
@@ -93,5 +90,9 @@ def rain_drip(repeats=3, delay=0.25, pause_between=0.6):
         print(BLUE + "." + RESET)
         time.sleep(pause_between)
         print()
+
+#======================================================================
+
+#End
 
 #======================================================================

@@ -3,7 +3,7 @@
 #room_9_dining_room.py
 #======================================================================
 
-#Internal imports
+#Imports
 import game_states
 from game_mechanics import visit_room, check_inventory, universal_wait
 from text_effects import type_text
@@ -37,7 +37,6 @@ def colorized_plates():
 #======================================================================
 
 #Dining room function
-
 def room_9_dining_room():
 
     #Room tracker
@@ -75,6 +74,7 @@ def room_9_dining_room():
     colorize_dining_table()
 
 #======================================================================
+
     #Dining room choices
     while True:
         print("\nWhat do you want to do?")
@@ -120,8 +120,8 @@ def room_9_dining_room():
             print(f"\n{RED}Invalid choice. Try again.{RESET}")
 
 #======================================================================
-#Looking around dining room
 
+#Looking around dining room
 def look_around_dining_room():
     while True:
         type_text("\nYou scan the dining room. What do you want to check?")
@@ -163,5 +163,9 @@ def look_around_dining_room():
 
         else:
             print(f"\n{RED}Invalid choice. Try again{RESET}.")
+
+#======================================================================
+
+#End
 
 #======================================================================

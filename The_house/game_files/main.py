@@ -4,7 +4,6 @@
 #======================================================================
 
 #Import modules
-
 from start_menu import start_menu
 from game_mechanics import visit_room, get_player_name
 from game_intro import game_intro
@@ -14,8 +13,8 @@ from color_scheme import BRIGHT_GREEN, RESET
 import time
 
 #======================================================================
+
 #Game start
-#======================================================================
 
 #Create entry/start point of game "main"
 def main():
@@ -37,9 +36,12 @@ def main():
 
 #======================================================================
 #Run game
-#======================================================================
 
 if __name__ == "__main__":
     main()  #Only runs if this file is executed directly
+
+#======================================================================
+
+#End
 
 #======================================================================

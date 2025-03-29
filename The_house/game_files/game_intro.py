@@ -3,7 +3,7 @@
 #game_intro.py
 #======================================================================
 
-#External imports
+#imports
 import time
 import random
 from color_scheme import RED, BRIGHT_RED, GREEN, BRIGHT_GREEN, BLUE, BRIGHT_BLUE, YELLOW, BRIGHT_YELLOW, CYAN, BRIGHT_CYAN, MAGENTA, BRIGHT_MAGENTA, WHITE, DIM_WHITE, RESET
@@ -96,6 +96,10 @@ def game_intro():
     time.sleep(1)
 
     return
+#======================================================================
+
+#End
+
 #======================================================================
 
 
